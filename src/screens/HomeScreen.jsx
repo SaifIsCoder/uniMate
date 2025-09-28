@@ -193,21 +193,7 @@ export default function HomeScreen({ navigation }) {
           </View>
         </View>
 
-        {/* Attendance Overview */}
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>📊 Attendance</Text>
-          <View style={styles.infoCard}>
-            <Text style={styles.infoText}>
-              Overall Attendance: {attendance}%
-            </Text>
-            <TouchableOpacity
-              style={[styles.infoButton, { backgroundColor: "#22C55E" }]}
-              onPress={() => alert("Attendance details screen")}
-            >
-              <Text style={styles.infoButtonText}>View Details</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
+       
       </ScrollView>
     </SafeAreaView>
   );
@@ -267,6 +253,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.05,
     shadowRadius: 4,
     elevation: 2,
+    margin: 5
   },
   classSubject: { fontSize: 16, fontWeight: "600", color: "#1F2937" },
   classDetail: { fontSize: 14, color: "#6B7280", marginTop: 2 },
@@ -279,6 +266,8 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.05,
     shadowRadius: 4,
     elevation: 2,
+        margin: 5
+
   },
   infoText: { fontSize: 15, color: "#374151", marginBottom: 6 },
   infoSub: { fontSize: 14, color: "#6B7280", marginBottom: 10 },
