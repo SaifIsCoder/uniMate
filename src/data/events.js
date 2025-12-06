@@ -1,0 +1,43 @@
+export const events = [
+    {
+      name: "React Native Workshop",
+      date: "23 Dec 2024",
+      time: "2:00 PM - 5:00 PM",
+      place: "Main Auditorium",
+      category: "Workshop",
+      organizer: "CS Department",
+      description: "Hands-on workshop covering React Native basics, UI design, and APIs.",
+      image: "https://images.unsplash.com/photo-1581091012184-5c9af98f1b6a",
+    },
+    {
+      name: "Inter-Department Football Tournament",
+      date: "05 Jan 2025",
+      time: "4:00 PM",
+      place: "Sports Ground",
+      category: "Sports",
+      organizer: "Sports Society",
+      description: "Annual football event where all departments compete for the championship.",
+      image: "https://images.unsplash.com/photo-1508609349937-5ec4ae374ebf",
+    },
+    {
+      name: "Tech Innovation Expo 2025",
+      date: "18 Jan 2025",
+      time: "10:00 AM",
+      place: "Hall B",
+      category: "Tech",
+      organizer: "IT Club",
+      description: "Showcase of student tech projects, robotics, AI demos, and hackathon winners.",
+      image: "https://images.unsplash.com/photo-1551836022-d5d88e9218df",
+    },
+    {
+      name: "Cultural Night",
+      date: "30 Dec 2024",
+      time: "7:00 PM",
+      place: "Open Air Theater",
+      category: "Cultural",
+      organizer: "Cultural Society",
+      description: "An evening full of music, dance, dramatics, and food stalls.",
+      image: "https://images.unsplash.com/photo-1519681393784-d120267933ba",
+    },
+  ];
+  

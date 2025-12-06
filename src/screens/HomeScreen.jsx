@@ -1,4 +1,3 @@
-import React from "react";
 import {
   View,
   Text,
@@ -7,37 +6,15 @@ import {
   ScrollView,
   Image,
 } from "react-native";
+import React, { useState } from "react";
+import UserDrawer from "../components/UserDrawer";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
-
+import { classes } from "../data";
+import { useUser } from "../context/UserContext";
 export default function HomeScreen({ navigation }) {
-  const classes = [
-    {
-      id: 1,
-      subject: "Data Structures",
-      time: "9:00 AM",
-      room: "A-101",
-      teacher: "Dr. Khan",
-      status: "completed",
-    },
-    {
-      id: 2,
-      subject: "Database Systems",
-      time: "11:00 AM",
-      room: "B-203",
-      teacher: "Prof. Ahmed",
-      status: "upcoming",
-    },
-    {
-      id: 3,
-      subject: "Software Engineering",
-      time: "2:00 PM",
-      room: "C-105",
-      teacher: "Ms. Fatima",
-      status: "missed",
-    },
-  ];
-
+  const { user } = useUser();
+  const [drawerVisible, setDrawerVisible] = useState(false);
   const latestNotification =
     "Tomorrow’s AI class will be held online via Zoom 📢";
   const nextEvent = {
@@ -45,7 +22,7 @@ export default function HomeScreen({ navigation }) {
     date: "Oct 10th, 2025",
     location: "Main Auditorium",
   };
-  const attendance = 85; // %
+  const attendance = 85;
 
   const getStatusStyle = (status) => {
     if (status === "completed") return { color: "#22C55E" };
@@ -61,12 +38,29 @@ export default function HomeScreen({ navigation }) {
         <View style={styles.header}>
           <View>
             <Text style={styles.welcome}>Welcome back,</Text>
-            <Text style={styles.username}>Saif 👋</Text>
+            <Text style={styles.username}>{user?.name || "Student"}</Text>
           </View>
-          <Image
-            source={{ uri: "https://i.pravatar.cc/100" }}
-            style={styles.avatar}
-          />
+
+          <View style={styles.headerNotify}>
+            {/* <View onPress={() => navigation.navigate("Notifications")}>
+              <Ionicons name="notifications" size={28} color="grey" />
+            </View> */}
+            <TouchableOpacity
+              onPress={() => navigation.navigate("Notifications")}
+              hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+              accessibilityLabel="Notifications"
+              accessibilityHint="Go to notifications screen"
+            >
+              <Ionicons name="notifications" size={28} color="grey" />
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={() => setDrawerVisible(true)}>
+              <Image
+                source={{ uri: "https://i.pravatar.cc/100" }}
+                style={styles.avatar}
+              />
+            </TouchableOpacity>
+          </View>
         </View>
 
         {/* Dashboard Cards */}
@@ -100,7 +94,6 @@ export default function HomeScreen({ navigation }) {
             <Text style={styles.cardText}>+5 New</Text>
           </TouchableOpacity> */}
 
-       
           {/* Profile */}
           {/* <TouchableOpacity
             style={[styles.card, { backgroundColor: "#F59E0B" }]}
@@ -114,7 +107,7 @@ export default function HomeScreen({ navigation }) {
           {/* Assignments */}
           <TouchableOpacity
             style={[styles.card, { backgroundColor: "#EF4444" }]}
-            onPress={() => alert("Assignments screen coming soon")}
+            onPress={() => navigation.navigate("Assignments")}
           >
             <Ionicons name="document-text" size={28} color="white" />
             <Text style={styles.cardTitle}>Assignments</Text>
@@ -131,7 +124,7 @@ export default function HomeScreen({ navigation }) {
             <Text style={styles.cardText}>1 Upcoming</Text>
           </TouchableOpacity>
 
-             {/* Events */}
+          {/* Events */}
           <TouchableOpacity
             style={[styles.card, { backgroundColor: "#A855F7" }]}
             onPress={() => navigation.navigate("Events")}
@@ -140,7 +133,6 @@ export default function HomeScreen({ navigation }) {
             <Text style={styles.cardTitle}>Next Event</Text>
             <Text style={styles.cardText}>{nextEvent.title}</Text>
           </TouchableOpacity>
-
         </View>
 
         {/* Today’s Classes Section */}
@@ -192,9 +184,13 @@ export default function HomeScreen({ navigation }) {
             </TouchableOpacity>
           </View>
         </View>
-
-       
       </ScrollView>
+
+      {/* Drawer Component */}
+      <UserDrawer
+        visible={drawerVisible}
+        onClose={() => setDrawerVisible(false)}
+      />
     </SafeAreaView>
   );
 }
@@ -211,6 +207,12 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     marginBottom: 20,
+  },
+  headerNotify: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 9,
   },
   welcome: { fontSize: 16, color: "#6B7280" },
   username: { fontSize: 22, fontWeight: "bold", color: "#111827" },
@@ -253,7 +255,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.05,
     shadowRadius: 4,
     elevation: 2,
-    margin: 5
+    margin: 5,
   },
   classSubject: { fontSize: 16, fontWeight: "600", color: "#1F2937" },
   classDetail: { fontSize: 14, color: "#6B7280", marginTop: 2 },
@@ -266,8 +268,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.05,
     shadowRadius: 4,
     elevation: 2,
-        margin: 5
-
+    margin: 5,
   },
   infoText: { fontSize: 15, color: "#374151", marginBottom: 6 },
   infoSub: { fontSize: 14, color: "#6B7280", marginBottom: 10 },
