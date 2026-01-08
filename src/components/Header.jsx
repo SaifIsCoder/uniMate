@@ -1,25 +1,29 @@
 import { StyleSheet, Text, View, Image } from "react-native";
 import React from "react";
+import { useRoute } from "@react-navigation/native";
 import { useUser } from "../context/UserContext";
+
+const defaultAvatar = require("../../assets/avatar.jpg");
+
+// Map route names to display names
+const screenNameMap = {
+  Home: "Home",
+  Schedule: "Schedule",
+  Assignments: "Assignments",
+  Events: "Events",
+  Notifications: "Notifications",
+};
 
 export default function Header() {
   const { user } = useUser();
-
-  const firstName = user?.name
-    ? user.name.split(" ")[0]       // Use first name only
-    : "Student";                    // Fallback while loading
+  const route = useRoute();
+  const screenName = screenNameMap[route.name] || route.name;
 
   return (
     <View style={styles.header}>
-      <View>
-        <Text style={styles.welcome}>Welcome back,</Text>
-        <Text style={styles.username}>{user?.name}</Text>
-      </View>
-
+      <Text style={styles.screenName}>{screenName}</Text>
       <Image
-        source={{
-          uri: user?.avatarUrl || "https://i.pravatar.cc/100", // Fallback avatar
-        }}
+        source={user?.avatarUrl ? { uri: user.avatarUrl } : defaultAvatar}
         style={styles.avatar}
       />
     </View>
@@ -32,14 +36,11 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     paddingVertical: 6,
+    // paddingHorizontal: 16,
   },
-  welcome: {
-    fontSize: 16,
-    color: "#6B7280",
-  },
-  username: {
-    fontSize: 22,
-    fontWeight: "bold",
+  screenName: {
+    fontSize: 24,
+    fontWeight: "700",
     color: "#111827",
   },
   avatar: {

@@ -1,5 +1,6 @@
 export const events = [
     {
+      id: "1",
       name: "React Native Workshop",
       date: "23 Dec 2024",
       time: "2:00 PM - 5:00 PM",
@@ -7,9 +8,10 @@ export const events = [
       category: "Workshop",
       organizer: "CS Department",
       description: "Hands-on workshop covering React Native basics, UI design, and APIs.",
-      image: "https://images.unsplash.com/photo-1581091012184-5c9af98f1b6a",
+      image: "../../assets/images/events/react-native.jpg",
     },
     {
+      id: "2",
       name: "Inter-Department Football Tournament",
       date: "05 Jan 2025",
       time: "4:00 PM",
@@ -20,6 +22,7 @@ export const events = [
       image: "https://images.unsplash.com/photo-1508609349937-5ec4ae374ebf",
     },
     {
+      id: "3",
       name: "Tech Innovation Expo 2025",
       date: "18 Jan 2025",
       time: "10:00 AM",
@@ -30,6 +33,7 @@ export const events = [
       image: "https://images.unsplash.com/photo-1551836022-d5d88e9218df",
     },
     {
+      id: "4",
       name: "Cultural Night",
       date: "30 Dec 2024",
       time: "7:00 PM",

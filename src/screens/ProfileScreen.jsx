@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -7,60 +7,84 @@ import {
   TouchableOpacity,
   ScrollView,
   Alert,
+  ActivityIndicator,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useNavigation, CommonActions } from "@react-navigation/native";
-import { signOut } from "firebase/auth";
-import { auth } from "../config/firebase";
 import { useUser } from "../context/UserContext";
 
 export default function ProfileScreen() {
   const navigation = useNavigation();
-  const { user, setUser } = useUser();
+  const { user, logout } = useUser();
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // User data is already loaded from UserContext
+    if (user) {
+      setLoading(false);
+    }
+  }, [user]);
 
   const handleLogout = () => {
-    Alert.alert(
-      "Logout",
-      "Are you sure you want to logout?",
-      [
-        { text: "Cancel", style: "cancel" },
-        {
-          text: "Logout",
-          style: "destructive",
-          onPress: async () => {
-            try {
-              await signOut(auth);
-              setUser(null);
-              // Reset navigation to Login screen
-              navigation.dispatch(
-                CommonActions.reset({
-                  index: 0,
-                  routes: [{ name: "Login" }],
-                })
-              );
-            } catch (error) {
-              Alert.alert("Error", "Failed to logout. Please try again.");
-            }
-          },
+    Alert.alert("Logout", "Are you sure you want to logout?", [
+      { text: "Cancel", style: "cancel" },
+      {
+        text: "Logout",
+        style: "destructive",
+        onPress: async () => {
+          try {
+            await logout();
+            navigation.dispatch(
+              CommonActions.reset({
+                index: 0,
+                routes: [{ name: "Login" }],
+              })
+            );
+          } catch (error) {
+            Alert.alert("Error", "Failed to logout. Please try again.");
+          }
         },
-      ]
-    );
+      },
+    ]);
   };
 
-  // Use user data from context with fallbacks
+  if (loading) {
+    return (
+      <SafeAreaView style={styles.container}>
+        <View style={styles.loadingContainer}>
+          <ActivityIndicator size="large" color="#1E88E5" />
+        </View>
+      </SafeAreaView>
+    );
+  }
+
+  // Map student data from Firebase structure
   const student = {
-    name: user?.name || "Student",
-    email: user?.email || "student@campus.edu",
-    rollNo: user?.rollNo || "000",
-    department: user?.department || "Not Set",
-    semester: user?.semester || "Not Set",
-    section: user?.section || "N/A",
-    batch: user?.batch || "N/A",
-    contact: user?.contact || "N/A",
-    address: user?.address || "N/A",
-    gpa: user?.gpa || "N/A",
-    attendance: "92%",
-    avatar: "https://i.pravatar.cc/150?img=12",
+    name: user?.personal?.fullName || user?.personal?.firstName || "Student",
+    email:
+      user?.contact?.universityEmail ||
+      user?.email ||
+      user?.contact?.personalEmail ||
+      "student@campus.edu",
+    rollNo: user?.academic?.rollNo || user?.studentId || "000",
+    department: user?.academic?.department || "Not Set",
+    semester: user?.academic?.currentSemester
+      ? `Semester ${user.academic.currentSemester}`
+      : "Not Set",
+    section: user?.academic?.section || "N/A",
+    batch: user?.academic?.session || user?.academic?.batch || "N/A",
+    program: user?.academic?.program || "Not Set",
+    contact: user?.contact?.phone || "N/A",
+    address: user?.contact?.address || "N/A",
+    gpa: user?.academic?.cgpa || user?.academic?.gpa || "N/A",
+    attendance: user?.academic?.attendance || user?.attendance || "0",
+    avatar:
+      user?.profile?.avatar ||
+      user?.avatar ||
+      "https://i.pravatar.cc/150?img=12",
+    gender: user?.personal?.gender || "N/A",
+    dateOfBirth: user?.personal?.dateOfBirth || "N/A",
+    guardian: user?.guardian || null,
   };
 
   return (
@@ -80,7 +104,9 @@ export default function ProfileScreen() {
                   <Text style={styles.chipText}>Roll #{student.rollNo}</Text>
                 </View>
                 <View style={styles.chipSecondary}>
-                  <Text style={styles.chipSecondaryText}>{student.semester}</Text>
+                  <Text style={styles.chipSecondaryText}>
+                    {student.semester}
+                  </Text>
                 </View>
               </View>
             </View>
@@ -96,7 +122,7 @@ export default function ProfileScreen() {
           </View>
           <View style={styles.statCard}>
             <Text style={styles.statLabel}>Attendance</Text>
-            <Text style={styles.statValue}>{student.attendance}</Text>
+            <Text style={styles.statValue}>{student.attendance}%</Text>
             <Text style={styles.statHint}>This semester</Text>
           </View>
         </View>
@@ -104,23 +130,54 @@ export default function ProfileScreen() {
         {/* ACADEMIC INFO */}
         <Text style={styles.sectionTitle}>Academic Info</Text>
         <View style={styles.infoCard}>
+          <InfoRow label="Program" value={student.program} />
           <InfoRow label="Department" value={student.department} />
-          <InfoRow label="Batch" value={student.batch} />
+          <InfoRow label="Session" value={student.batch} />
           <InfoRow label="Section" value={student.section} />
+          <InfoRow label="Semester" value={student.semester} />
+        </View>
+
+        {/* PERSONAL INFO */}
+        <Text style={styles.sectionTitle}>Personal Info</Text>
+        <View style={styles.infoCard}>
+          <InfoRow label="Gender" value={student.gender} />
+          <InfoRow label="Date of Birth" value={student.dateOfBirth} />
         </View>
 
         {/* CONTACT INFO */}
         <Text style={styles.sectionTitle}>Contact</Text>
         <View style={styles.infoCard}>
+          <InfoRow
+            label="University Email"
+            value={user?.contact?.universityEmail || "N/A"}
+          />
+          <InfoRow
+            label="Personal Email"
+            value={user?.contact?.personalEmail || "N/A"}
+          />
           <InfoRow label="Phone" value={student.contact} />
           <InfoRow label="Address" value={student.address} />
         </View>
 
-        {/* ACCOUNT / ACTIONS */}
-        {/* <Text style={styles.sectionTitle}>Account</Text>
-        <View style={styles.infoCard}>
-          <InfoRow label="Student Email" value={student.email} />
-        </View> */}
+        {/* GUARDIAN INFO */}
+        {student.guardian && (
+          <>
+            <Text style={styles.sectionTitle}>Guardian</Text>
+            <View style={styles.infoCard}>
+              <InfoRow label="Name" value={student.guardian.name || "N/A"} />
+              <InfoRow
+                label="Relation"
+                value={student.guardian.relation || "N/A"}
+              />
+              <InfoRow label="Phone" value={student.guardian.phone || "N/A"} />
+              <InfoRow label="Email" value={student.guardian.email || "N/A"} />
+              <InfoRow
+                label="Occupation"
+                value={student.guardian.occupation || "N/A"}
+              />
+            </View>
+          </>
+        )}
 
         <TouchableOpacity style={styles.logoutBtn} onPress={handleLogout}>
           <Text style={styles.logoutText}>Logout</Text>
@@ -144,22 +201,32 @@ function InfoRow({ label, value }) {
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: "#F3F4F6" },
-
+  loadingContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
   /* HEADER */
   headerWrapper: {
     marginBottom: 5,
   },
   headerBg: {
-    height: 90,
+    height: 180,
     backgroundColor: "#4F46E5",
     borderBottomLeftRadius: 24,
     borderBottomRightRadius: 24,
+    position: "relative",
   },
   headerContent: {
     flexDirection: "row",
     alignItems: "center",
     paddingHorizontal: 20,
-    marginTop: -55, // overlaps the purple background
+    position: "absolute",
+    top: 30,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    // marginTop: ,
   },
   avatar: {
     width: 90,
@@ -175,11 +242,11 @@ const styles = StyleSheet.create({
   },
   name: { fontSize: 20, fontWeight: "700", color: "white" },
   email: { fontSize: 13, marginTop: 2, color: "white" },
-
   chipRow: {
     flexDirection: "row",
     flexWrap: "wrap",
     marginTop: 10,
+    gap: 8,
   },
   chip: {
     paddingHorizontal: 10,
@@ -204,7 +271,6 @@ const styles = StyleSheet.create({
     color: "#374151",
     fontWeight: "500",
   },
-
   /* QUICK STATS */
   statsRow: {
     flexDirection: "row",
@@ -225,9 +291,13 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
   },
   statLabel: { fontSize: 12, color: "#6B7280" },
-  statValue: { fontSize: 22, fontWeight: "700", color: "#111827", marginTop: 2 },
+  statValue: {
+    fontSize: 22,
+    fontWeight: "700",
+    color: "#111827",
+    marginTop: 2,
+  },
   statHint: { fontSize: 11, color: "#9CA3AF", marginTop: 4 },
-
   /* SECTION TITLES */
   sectionTitle: {
     marginTop: 10,
@@ -237,7 +307,6 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     color: "#374151",
   },
-
   /* INFO CARDS */
   infoCard: {
     backgroundColor: "#FFFFFF",
@@ -256,12 +325,8 @@ const styles = StyleSheet.create({
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderBottomColor: "#E5E7EB",
   },
-  infoRowLast: {
-    borderBottomWidth: 0,
-  },
   infoLabel: { fontSize: 12, color: "#6B7280", marginBottom: 2 },
   infoValue: { fontSize: 15, color: "#111827", fontWeight: "500" },
-
   /* LOGOUT BUTTON */
   logoutBtn: {
     marginTop: 20,
@@ -278,4 +343,3 @@ const styles = StyleSheet.create({
     fontSize: 15,
   },
 });
-

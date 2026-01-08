@@ -1,0 +1,1857 @@
+﻿[
+  {
+    "studentId": "BSIT62S25S001",
+    "personal": {
+      "firstName": "Muqadas",
+      "lastName": "Ambreen",
+      "fullName": "Muqadas Ambreen",
+      "gender": "Female",
+      "dateOfBirth": "2005-01-01"
+    },
+    "academic": {
+      "rollNo": "BSIT62S25S001",
+      "program": "BS Information Technology",
+      "department": "Information Technology",
+      "session": "2025-2027",
+      "currentSemester": 1,
+      "section": "SS0"
+    },
+    "contact": {
+      "universityEmail": "bsit62s25s001@university.edu",
+      "personalEmail": "muqadas@gmail.com",
+      "phone": "+92300100000",
+      "address": "Pakistan"
+    },
+    "guardian": {
+      "name": "Zulifiqar Ali",
+      "relation": "Father",
+      "phone": "+92333100000",
+      "email": "zulifiqar@gmail.com",
+      "occupation": "Private Job"
+    },
+    "status": {
+      "isActive": true,
+      "admissionDate": "2025-09-10"
+    }
+  },
+  {
+    "studentId": "BSIT62S25S002",
+    "personal": {
+      "firstName": "Mubeen",
+      "lastName": "Abid",
+      "fullName": "Mubeen Abid",
+      "gender": "Male",
+      "dateOfBirth": "2005-01-01"
+    },
+    "academic": {
+      "rollNo": "BSIT62S25S002",
+      "program": "BS Information Technology",
+      "department": "Information Technology",
+      "session": "2025-2027",
+      "currentSemester": 1,
+      "section": "SS0"
+    },
+    "contact": {
+      "universityEmail": "bsit62s25s002@university.edu",
+      "personalEmail": "mubeen@gmail.com",
+      "phone": "+92300100001",
+      "address": "Pakistan"
+    },
+    "guardian": {
+      "name": "Abid Ali",
+      "relation": "Father",
+      "phone": "+92333100001",
+      "email": "abid@gmail.com",
+      "occupation": "Private Job"
+    },
+    "status": {
+      "isActive": true,
+      "admissionDate": "2025-09-10"
+    }
+  },
+  {
+    "studentId": "BSIT62S25S003",
+    "personal": {
+      "firstName": "Maheen",
+      "lastName": "Zafar",
+      "fullName": "Maheen Zafar",
+      "gender": "Female",
+      "dateOfBirth": "2005-01-01"
+    },
+    "academic": {
+      "rollNo": "BSIT62S25S003",
+      "program": "BS Information Technology",
+      "department": "Information Technology",
+      "session": "2025-2027",
+      "currentSemester": 1,
+      "section": "SS0"
+    },
+    "contact": {
+      "universityEmail": "bsit62s25s003@university.edu",
+      "personalEmail": "maheen@gmail.com",
+      "phone": "+92300100002",
+      "address": "Pakistan"
+    },
+    "guardian": {
+      "name": "Zafar Iqbal",
+      "relation": "Father",
+      "phone": "+92333100002",
+      "email": "zafar@gmail.com",
+      "occupation": "Private Job"
+    },
+    "status": {
+      "isActive": true,
+      "admissionDate": "2025-09-10"
+    }
+  },
+  {
+    "studentId": "BSIT62S25S004",
+    "personal": {
+      "firstName": "Sania",
+      "lastName": "Saleem",
+      "fullName": "Sania Saleem",
+      "gender": "Male",
+      "dateOfBirth": "2005-01-01"
+    },
+    "academic": {
+      "rollNo": "BSIT62S25S004",
+      "program": "BS Information Technology",
+      "department": "Information Technology",
+      "session": "2025-2027",
+      "currentSemester": 1,
+      "section": "SS0"
+    },
+    "contact": {
+      "universityEmail": "bsit62s25s004@university.edu",
+      "personalEmail": "sania@gmail.com",
+      "phone": "+92300100003",
+      "address": "Pakistan"
+    },
+    "guardian": {
+      "name": "Muhammad Saleem",
+      "relation": "Father",
+      "phone": "+92333100003",
+      "email": "muhammad@gmail.com",
+      "occupation": "Private Job"
+    },
+    "status": {
+      "isActive": true,
+      "admissionDate": "2025-09-10"
+    }
+  },
+  {
+    "studentId": "BSIT62S25S005",
+    "personal": {
+      "firstName": "Aleeza",
+      "lastName": "Khalid",
+      "fullName": "Aleeza Khalid",
+      "gender": "Female",
+      "dateOfBirth": "2005-01-01"
+    },
+    "academic": {
+      "rollNo": "BSIT62S25S005",
+      "program": "BS Information Technology",
+      "department": "Information Technology",
+      "session": "2025-2027",
+      "currentSemester": 1,
+      "section": "SS0"
+    },
+    "contact": {
+      "universityEmail": "bsit62s25s005@university.edu",
+      "personalEmail": "aleeza@gmail.com",
+      "phone": "+92300100004",
+      "address": "Pakistan"
+    },
+    "guardian": {
+      "name": "Khalid Muhammad",
+      "relation": "Father",
+      "phone": "+92333100004",
+      "email": "khalid@gmail.com",
+      "occupation": "Private Job"
+    },
+    "status": {
+      "isActive": true,
+      "admissionDate": "2025-09-10"
+    }
+  },
+  {
+    "studentId": "BSIT62S25S006",
+    "personal": {
+      "firstName": "Aniyat",
+      "lastName": "Sakeena",
+      "fullName": "Aniyat Sakeena",
+      "gender": "Male",
+      "dateOfBirth": "2005-01-01"
+    },
+    "academic": {
+      "rollNo": "BSIT62S25S006",
+      "program": "BS Information Technology",
+      "department": "Information Technology",
+      "session": "2025-2027",
+      "currentSemester": 1,
+      "section": "SS0"
+    },
+    "contact": {
+      "universityEmail": "bsit62s25s006@university.edu",
+      "personalEmail": "aniyat@gmail.com",
+      "phone": "+92300100005",
+      "address": "Pakistan"
+    },
+    "guardian": {
+      "name": "Asad Abbas",
+      "relation": "Father",
+      "phone": "+92333100005",
+      "email": "asad@gmail.com",
+      "occupation": "Private Job"
+    },
+    "status": {
+      "isActive": true,
+      "admissionDate": "2025-09-10"
+    }
+  },
+  {
+    "studentId": "BSIT62S25S007",
+    "personal": {
+      "firstName": "Zarmeen",
+      "lastName": "Gul",
+      "fullName": "Zarmeen Gul",
+      "gender": "Female",
+      "dateOfBirth": "2005-01-01"
+    },
+    "academic": {
+      "rollNo": "BSIT62S25S007",
+      "program": "BS Information Technology",
+      "department": "Information Technology",
+      "session": "2025-2027",
+      "currentSemester": 1,
+      "section": "SS0"
+    },
+    "contact": {
+      "universityEmail": "bsit62s25s007@university.edu",
+      "personalEmail": "zarmeen@gmail.com",
+      "phone": "+92300100006",
+      "address": "Pakistan"
+    },
+    "guardian": {
+      "name": "Liaqat Ali",
+      "relation": "Father",
+      "phone": "+92333100006",
+      "email": "liaqat@gmail.com",
+      "occupation": "Private Job"
+    },
+    "status": {
+      "isActive": true,
+      "admissionDate": "2025-09-10"
+    }
+  },
+  {
+    "studentId": "BSIT62S25S008",
+    "personal": {
+      "firstName": "Moqarrab",
+      "lastName": "Fatima",
+      "fullName": "Moqarrab Fatima",
+      "gender": "Male",
+      "dateOfBirth": "2005-01-01"
+    },
+    "academic": {
+      "rollNo": "BSIT62S25S008",
+      "program": "BS Information Technology",
+      "department": "Information Technology",
+      "session": "2025-2027",
+      "currentSemester": 1,
+      "section": "SS0"
+    },
+    "contact": {
+      "universityEmail": "bsit62s25s008@university.edu",
+      "personalEmail": "moqarrab@gmail.com",
+      "phone": "+92300100007",
+      "address": "Pakistan"
+    },
+    "guardian": {
+      "name": "Muhammad Waheed",
+      "relation": "Father",
+      "phone": "+92333100007",
+      "email": "muhammad@gmail.com",
+      "occupation": "Private Job"
+    },
+    "status": {
+      "isActive": true,
+      "admissionDate": "2025-09-10"
+    }
+  },
+  {
+    "studentId": "BSIT62S25S009",
+    "personal": {
+      "firstName": "Iqra",
+      "lastName": "",
+      "fullName": "Iqra",
+      "gender": "Female",
+      "dateOfBirth": "2005-01-01"
+    },
+    "academic": {
+      "rollNo": "BSIT62S25S009",
+      "program": "BS Information Technology",
+      "department": "Information Technology",
+      "session": "2025-2027",
+      "currentSemester": 1,
+      "section": "SS0"
+    },
+    "contact": {
+      "universityEmail": "bsit62s25s009@university.edu",
+      "personalEmail": "iqra@gmail.com",
+      "phone": "+92300100008",
+      "address": "Pakistan"
+    },
+    "guardian": {
+      "name": "Muhammad Imran",
+      "relation": "Father",
+      "phone": "+92333100008",
+      "email": "muhammad@gmail.com",
+      "occupation": "Private Job"
+    },
+    "status": {
+      "isActive": true,
+      "admissionDate": "2025-09-10"
+    }
+  },
+  {
+    "studentId": "BSIT62S25S010",
+    "personal": {
+      "firstName": "Tazeem",
+      "lastName": "Zafar",
+      "fullName": "Tazeem Zafar",
+      "gender": "Male",
+      "dateOfBirth": "2005-01-01"
+    },
+    "academic": {
+      "rollNo": "BSIT62S25S010",
+      "program": "BS Information Technology",
+      "department": "Information Technology",
+      "session": "2025-2027",
+      "currentSemester": 1,
+      "section": "SS0"
+    },
+    "contact": {
+      "universityEmail": "bsit62s25s010@university.edu",
+      "personalEmail": "tazeem@gmail.com",
+      "phone": "+92300100009",
+      "address": "Pakistan"
+    },
+    "guardian": {
+      "name": "Zafar Iqbal",
+      "relation": "Father",
+      "phone": "+92333100009",
+      "email": "zafar@gmail.com",
+      "occupation": "Private Job"
+    },
+    "status": {
+      "isActive": true,
+      "admissionDate": "2025-09-10"
+    }
+  },
+  {
+    "studentId": "BSIT62S25S011",
+    "personal": {
+      "firstName": "Ghulam",
+      "lastName": "Ayesha",
+      "fullName": "Ghulam Ayesha",
+      "gender": "Female",
+      "dateOfBirth": "2005-01-01"
+    },
+    "academic": {
+      "rollNo": "BSIT62S25S011",
+      "program": "BS Information Technology",
+      "department": "Information Technology",
+      "session": "2025-2027",
+      "currentSemester": 1,
+      "section": "SS0"
+    },
+    "contact": {
+      "universityEmail": "bsit62s25s011@university.edu",
+      "personalEmail": "ghulam@gmail.com",
+      "phone": "+92300100010",
+      "address": "Pakistan"
+    },
+    "guardian": {
+      "name": "Abdul Ghafoor",
+      "relation": "Father",
+      "phone": "+92333100010",
+      "email": "abdul@gmail.com",
+      "occupation": "Private Job"
+    },
+    "status": {
+      "isActive": true,
+      "admissionDate": "2025-09-10"
+    }
+  },
+  {
+    "studentId": "BSIT62S25S012",
+    "personal": {
+      "firstName": "Saif",
+      "lastName": "Ur Rehman",
+      "fullName": "Saif Ur Rehman",
+      "gender": "Male",
+      "dateOfBirth": "2005-01-01"
+    },
+    "academic": {
+      "rollNo": "BSIT62S25S012",
+      "program": "BS Information Technology",
+      "department": "Information Technology",
+      "session": "2025-2027",
+      "currentSemester": 1,
+      "section": "SS0"
+    },
+    "contact": {
+      "universityEmail": "bsit62s25s012@university.edu",
+      "personalEmail": "saif@gmail.com",
+      "phone": "+92300100011",
+      "address": "Pakistan"
+    },
+    "guardian": {
+      "name": "Muhammad Akram",
+      "relation": "Father",
+      "phone": "+92333100011",
+      "email": "muhammad@gmail.com",
+      "occupation": "Private Job"
+    },
+    "status": {
+      "isActive": true,
+      "admissionDate": "2025-09-10"
+    }
+  },
+  {
+    "studentId": "BSIT62S25S013",
+    "personal": {
+      "firstName": "Muhammad",
+      "lastName": "Hamza Saleem",
+      "fullName": "Muhammad Hamza Saleem",
+      "gender": "Female",
+      "dateOfBirth": "2005-01-01"
+    },
+    "academic": {
+      "rollNo": "BSIT62S25S013",
+      "program": "BS Information Technology",
+      "department": "Information Technology",
+      "session": "2025-2027",
+      "currentSemester": 1,
+      "section": "SS0"
+    },
+    "contact": {
+      "universityEmail": "bsit62s25s013@university.edu",
+      "personalEmail": "muhammad@gmail.com",
+      "phone": "+92300100012",
+      "address": "Pakistan"
+    },
+    "guardian": {
+      "name": "Muhammad Saleem",
+      "relation": "Father",
+      "phone": "+92333100012",
+      "email": "muhammad@gmail.com",
+      "occupation": "Private Job"
+    },
+    "status": {
+      "isActive": true,
+      "admissionDate": "2025-09-10"
+    }
+  },
+  {
+    "studentId": "BSIT62S25S014",
+    "personal": {
+      "firstName": "Eman",
+      "lastName": "Fatima",
+      "fullName": "Eman Fatima",
+      "gender": "Male",
+      "dateOfBirth": "2005-01-01"
+    },
+    "academic": {
+      "rollNo": "BSIT62S25S014",
+      "program": "BS Information Technology",
+      "department": "Information Technology",
+      "session": "2025-2027",
+      "currentSemester": 1,
+      "section": "SS0"
+    },
+    "contact": {
+      "universityEmail": "bsit62s25s014@university.edu",
+      "personalEmail": "eman@gmail.com",
+      "phone": "+92300100013",
+      "address": "Pakistan"
+    },
+    "guardian": {
+      "name": "Rana Ijaz Mahmood",
+      "relation": "Father",
+      "phone": "+92333100013",
+      "email": "rana@gmail.com",
+      "occupation": "Private Job"
+    },
+    "status": {
+      "isActive": true,
+      "admissionDate": "2025-09-10"
+    }
+  },
+  {
+    "studentId": "BSIT62S25S015",
+    "personal": {
+      "firstName": "Musawar",
+      "lastName": "Abbas",
+      "fullName": "Musawar Abbas",
+      "gender": "Female",
+      "dateOfBirth": "2005-01-01"
+    },
+    "academic": {
+      "rollNo": "BSIT62S25S015",
+      "program": "BS Information Technology",
+      "department": "Information Technology",
+      "session": "2025-2027",
+      "currentSemester": 1,
+      "section": "SS0"
+    },
+    "contact": {
+      "universityEmail": "bsit62s25s015@university.edu",
+      "personalEmail": "musawar@gmail.com",
+      "phone": "+92300100014",
+      "address": "Pakistan"
+    },
+    "guardian": {
+      "name": "Muhammad Ameer",
+      "relation": "Father",
+      "phone": "+92333100014",
+      "email": "muhammad@gmail.com",
+      "occupation": "Private Job"
+    },
+    "status": {
+      "isActive": true,
+      "admissionDate": "2025-09-10"
+    }
+  },
+  {
+    "studentId": "BSIT62S25S016",
+    "personal": {
+      "firstName": "Fatima",
+      "lastName": "Jahangir",
+      "fullName": "Fatima Jahangir",
+      "gender": "Male",
+      "dateOfBirth": "2005-01-01"
+    },
+    "academic": {
+      "rollNo": "BSIT62S25S016",
+      "program": "BS Information Technology",
+      "department": "Information Technology",
+      "session": "2025-2027",
+      "currentSemester": 1,
+      "section": "SS0"
+    },
+    "contact": {
+      "universityEmail": "bsit62s25s016@university.edu",
+      "personalEmail": "fatima@gmail.com",
+      "phone": "+92300100015",
+      "address": "Pakistan"
+    },
+    "guardian": {
+      "name": "Jahangir Khan",
+      "relation": "Father",
+      "phone": "+92333100015",
+      "email": "jahangir@gmail.com",
+      "occupation": "Private Job"
+    },
+    "status": {
+      "isActive": true,
+      "admissionDate": "2025-09-10"
+    }
+  },
+  {
+    "studentId": "BSIT62S25S017",
+    "personal": {
+      "firstName": "Isha",
+      "lastName": "Zafar",
+      "fullName": "Isha Zafar",
+      "gender": "Female",
+      "dateOfBirth": "2005-01-01"
+    },
+    "academic": {
+      "rollNo": "BSIT62S25S017",
+      "program": "BS Information Technology",
+      "department": "Information Technology",
+      "session": "2025-2027",
+      "currentSemester": 1,
+      "section": "SS0"
+    },
+    "contact": {
+      "universityEmail": "bsit62s25s017@university.edu",
+      "personalEmail": "isha@gmail.com",
+      "phone": "+92300100016",
+      "address": "Pakistan"
+    },
+    "guardian": {
+      "name": "Zafar Iqbal",
+      "relation": "Father",
+      "phone": "+92333100016",
+      "email": "zafar@gmail.com",
+      "occupation": "Private Job"
+    },
+    "status": {
+      "isActive": true,
+      "admissionDate": "2025-09-10"
+    }
+  },
+  {
+    "studentId": "BSIT62S25S018",
+    "personal": {
+      "firstName": "Danyal",
+      "lastName": "Hasaan",
+      "fullName": "Danyal Hasaan",
+      "gender": "Male",
+      "dateOfBirth": "2005-01-01"
+    },
+    "academic": {
+      "rollNo": "BSIT62S25S018",
+      "program": "BS Information Technology",
+      "department": "Information Technology",
+      "session": "2025-2027",
+      "currentSemester": 1,
+      "section": "SS0"
+    },
+    "contact": {
+      "universityEmail": "bsit62s25s018@university.edu",
+      "personalEmail": "danyal@gmail.com",
+      "phone": "+92300100017",
+      "address": "Pakistan"
+    },
+    "guardian": {
+      "name": "Muhammad Azam",
+      "relation": "Father",
+      "phone": "+92333100017",
+      "email": "muhammad@gmail.com",
+      "occupation": "Private Job"
+    },
+    "status": {
+      "isActive": true,
+      "admissionDate": "2025-09-10"
+    }
+  },
+  {
+    "studentId": "BSIT62S25S019",
+    "personal": {
+      "firstName": "Muhammad",
+      "lastName": "Hassan",
+      "fullName": "Muhammad Hassan",
+      "gender": "Female",
+      "dateOfBirth": "2005-01-01"
+    },
+    "academic": {
+      "rollNo": "BSIT62S25S019",
+      "program": "BS Information Technology",
+      "department": "Information Technology",
+      "session": "2025-2027",
+      "currentSemester": 1,
+      "section": "SS0"
+    },
+    "contact": {
+      "universityEmail": "bsit62s25s019@university.edu",
+      "personalEmail": "muhammad@gmail.com",
+      "phone": "+92300100018",
+      "address": "Pakistan"
+    },
+    "guardian": {
+      "name": "Muhammad Akram Anjum",
+      "relation": "Father",
+      "phone": "+92333100018",
+      "email": "muhammad@gmail.com",
+      "occupation": "Private Job"
+    },
+    "status": {
+      "isActive": true,
+      "admissionDate": "2025-09-10"
+    }
+  },
+  {
+    "studentId": "BSIT62S25S020",
+    "personal": {
+      "firstName": "Yashfa",
+      "lastName": "Iraj",
+      "fullName": "Yashfa Iraj",
+      "gender": "Male",
+      "dateOfBirth": "2005-01-01"
+    },
+    "academic": {
+      "rollNo": "BSIT62S25S020",
+      "program": "BS Information Technology",
+      "department": "Information Technology",
+      "session": "2025-2027",
+      "currentSemester": 1,
+      "section": "SS0"
+    },
+    "contact": {
+      "universityEmail": "bsit62s25s020@university.edu",
+      "personalEmail": "yashfa@gmail.com",
+      "phone": "+92300100019",
+      "address": "Pakistan"
+    },
+    "guardian": {
+      "name": "Israr Ahmed",
+      "relation": "Father",
+      "phone": "+92333100019",
+      "email": "israr@gmail.com",
+      "occupation": "Private Job"
+    },
+    "status": {
+      "isActive": true,
+      "admissionDate": "2025-09-10"
+    }
+  },
+  {
+    "studentId": "BSIT62S25S021",
+    "personal": {
+      "firstName": "Hunza",
+      "lastName": "Masood",
+      "fullName": "Hunza Masood",
+      "gender": "Female",
+      "dateOfBirth": "2005-01-01"
+    },
+    "academic": {
+      "rollNo": "BSIT62S25S021",
+      "program": "BS Information Technology",
+      "department": "Information Technology",
+      "session": "2025-2027",
+      "currentSemester": 1,
+      "section": "SS0"
+    },
+    "contact": {
+      "universityEmail": "bsit62s25s021@university.edu",
+      "personalEmail": "hunza@gmail.com",
+      "phone": "+92300100020",
+      "address": "Pakistan"
+    },
+    "guardian": {
+      "name": "Masood Ahmad",
+      "relation": "Father",
+      "phone": "+92333100020",
+      "email": "masood@gmail.com",
+      "occupation": "Private Job"
+    },
+    "status": {
+      "isActive": true,
+      "admissionDate": "2025-09-10"
+    }
+  },
+  {
+    "studentId": "BSIT62S25S022",
+    "personal": {
+      "firstName": "Aqsa",
+      "lastName": "Bibi",
+      "fullName": "Aqsa Bibi",
+      "gender": "Male",
+      "dateOfBirth": "2005-01-01"
+    },
+    "academic": {
+      "rollNo": "BSIT62S25S022",
+      "program": "BS Information Technology",
+      "department": "Information Technology",
+      "session": "2025-2027",
+      "currentSemester": 1,
+      "section": "SS0"
+    },
+    "contact": {
+      "universityEmail": "bsit62s25s022@university.edu",
+      "personalEmail": "aqsa@gmail.com",
+      "phone": "+92300100021",
+      "address": "Pakistan"
+    },
+    "guardian": {
+      "name": "Muhammad Fayyaz",
+      "relation": "Father",
+      "phone": "+92333100021",
+      "email": "muhammad@gmail.com",
+      "occupation": "Private Job"
+    },
+    "status": {
+      "isActive": true,
+      "admissionDate": "2025-09-10"
+    }
+  },
+  {
+    "studentId": "BSIT62S25S023",
+    "personal": {
+      "firstName": "Bisma",
+      "lastName": "Nisar Butt",
+      "fullName": "Bisma Nisar Butt",
+      "gender": "Female",
+      "dateOfBirth": "2005-01-01"
+    },
+    "academic": {
+      "rollNo": "BSIT62S25S023",
+      "program": "BS Information Technology",
+      "department": "Information Technology",
+      "session": "2025-2027",
+      "currentSemester": 1,
+      "section": "SS0"
+    },
+    "contact": {
+      "universityEmail": "bsit62s25s023@university.edu",
+      "personalEmail": "bisma@gmail.com",
+      "phone": "+92300100022",
+      "address": "Pakistan"
+    },
+    "guardian": {
+      "name": "Shabana Noreen",
+      "relation": "Father",
+      "phone": "+92333100022",
+      "email": "shabana@gmail.com",
+      "occupation": "Private Job"
+    },
+    "status": {
+      "isActive": true,
+      "admissionDate": "2025-09-10"
+    }
+  },
+  {
+    "studentId": "BSIT62S25S024",
+    "personal": {
+      "firstName": "Shahida",
+      "lastName": "Ijaz",
+      "fullName": "Shahida Ijaz",
+      "gender": "Male",
+      "dateOfBirth": "2005-01-01"
+    },
+    "academic": {
+      "rollNo": "BSIT62S25S024",
+      "program": "BS Information Technology",
+      "department": "Information Technology",
+      "session": "2025-2027",
+      "currentSemester": 1,
+      "section": "SS0"
+    },
+    "contact": {
+      "universityEmail": "bsit62s25s024@university.edu",
+      "personalEmail": "shahida@gmail.com",
+      "phone": "+92300100023",
+      "address": "Pakistan"
+    },
+    "guardian": {
+      "name": "Ijaz Ahmed",
+      "relation": "Father",
+      "phone": "+92333100023",
+      "email": "ijaz@gmail.com",
+      "occupation": "Private Job"
+    },
+    "status": {
+      "isActive": true,
+      "admissionDate": "2025-09-10"
+    }
+  },
+  {
+    "studentId": "BSIT62S25S025",
+    "personal": {
+      "firstName": "Maryam",
+      "lastName": "Zahoor",
+      "fullName": "Maryam Zahoor",
+      "gender": "Female",
+      "dateOfBirth": "2005-01-01"
+    },
+    "academic": {
+      "rollNo": "BSIT62S25S025",
+      "program": "BS Information Technology",
+      "department": "Information Technology",
+      "session": "2025-2027",
+      "currentSemester": 1,
+      "section": "SS0"
+    },
+    "contact": {
+      "universityEmail": "bsit62s25s025@university.edu",
+      "personalEmail": "maryam@gmail.com",
+      "phone": "+92300100024",
+      "address": "Pakistan"
+    },
+    "guardian": {
+      "name": "Zahoor Ahmed",
+      "relation": "Father",
+      "phone": "+92333100024",
+      "email": "zahoor@gmail.com",
+      "occupation": "Private Job"
+    },
+    "status": {
+      "isActive": true,
+      "admissionDate": "2025-09-10"
+    }
+  },
+  {
+    "studentId": "BSIT62S25S026",
+    "personal": {
+      "firstName": "Bushra",
+      "lastName": "Abid",
+      "fullName": "Bushra Abid",
+      "gender": "Male",
+      "dateOfBirth": "2005-01-01"
+    },
+    "academic": {
+      "rollNo": "BSIT62S25S026",
+      "program": "BS Information Technology",
+      "department": "Information Technology",
+      "session": "2025-2027",
+      "currentSemester": 1,
+      "section": "SS0"
+    },
+    "contact": {
+      "universityEmail": "bsit62s25s026@university.edu",
+      "personalEmail": "bushra@gmail.com",
+      "phone": "+92300100025",
+      "address": "Pakistan"
+    },
+    "guardian": {
+      "name": "Abid Hussain",
+      "relation": "Father",
+      "phone": "+92333100025",
+      "email": "abid@gmail.com",
+      "occupation": "Private Job"
+    },
+    "status": {
+      "isActive": true,
+      "admissionDate": "2025-09-10"
+    }
+  },
+  {
+    "studentId": "BSIT62S25S027",
+    "personal": {
+      "firstName": "Muhammad",
+      "lastName": "Abdullah",
+      "fullName": "Muhammad Abdullah",
+      "gender": "Female",
+      "dateOfBirth": "2005-01-01"
+    },
+    "academic": {
+      "rollNo": "BSIT62S25S027",
+      "program": "BS Information Technology",
+      "department": "Information Technology",
+      "session": "2025-2027",
+      "currentSemester": 1,
+      "section": "SS0"
+    },
+    "contact": {
+      "universityEmail": "bsit62s25s027@university.edu",
+      "personalEmail": "muhammad@gmail.com",
+      "phone": "+92300100026",
+      "address": "Pakistan"
+    },
+    "guardian": {
+      "name": "Basharat Masood",
+      "relation": "Father",
+      "phone": "+92333100026",
+      "email": "basharat@gmail.com",
+      "occupation": "Private Job"
+    },
+    "status": {
+      "isActive": true,
+      "admissionDate": "2025-09-10"
+    }
+  },
+  {
+    "studentId": "BSIT62S25S028",
+    "personal": {
+      "firstName": "Muhammad",
+      "lastName": "Haseeb Abbas",
+      "fullName": "Muhammad Haseeb Abbas",
+      "gender": "Male",
+      "dateOfBirth": "2005-01-01"
+    },
+    "academic": {
+      "rollNo": "BSIT62S25S028",
+      "program": "BS Information Technology",
+      "department": "Information Technology",
+      "session": "2025-2027",
+      "currentSemester": 1,
+      "section": "SS0"
+    },
+    "contact": {
+      "universityEmail": "bsit62s25s028@university.edu",
+      "personalEmail": "muhammad@gmail.com",
+      "phone": "+92300100027",
+      "address": "Pakistan"
+    },
+    "guardian": {
+      "name": "Ghulam Abbas",
+      "relation": "Father",
+      "phone": "+92333100027",
+      "email": "ghulam@gmail.com",
+      "occupation": "Private Job"
+    },
+    "status": {
+      "isActive": true,
+      "admissionDate": "2025-09-10"
+    }
+  },
+  {
+    "studentId": "BSIT62S25S029",
+    "personal": {
+      "firstName": "Harram",
+      "lastName": "Iftikhar",
+      "fullName": "Harram Iftikhar",
+      "gender": "Female",
+      "dateOfBirth": "2005-01-01"
+    },
+    "academic": {
+      "rollNo": "BSIT62S25S029",
+      "program": "BS Information Technology",
+      "department": "Information Technology",
+      "session": "2025-2027",
+      "currentSemester": 1,
+      "section": "SS0"
+    },
+    "contact": {
+      "universityEmail": "bsit62s25s029@university.edu",
+      "personalEmail": "harram@gmail.com",
+      "phone": "+92300100028",
+      "address": "Pakistan"
+    },
+    "guardian": {
+      "name": "Iftikhar Ahmad",
+      "relation": "Father",
+      "phone": "+92333100028",
+      "email": "iftikhar@gmail.com",
+      "occupation": "Private Job"
+    },
+    "status": {
+      "isActive": true,
+      "admissionDate": "2025-09-10"
+    }
+  },
+  {
+    "studentId": "BSIT62S25S030",
+    "personal": {
+      "firstName": "Muhammad",
+      "lastName": "Abdulahad",
+      "fullName": "Muhammad Abdulahad",
+      "gender": "Male",
+      "dateOfBirth": "2005-01-01"
+    },
+    "academic": {
+      "rollNo": "BSIT62S25S030",
+      "program": "BS Information Technology",
+      "department": "Information Technology",
+      "session": "2025-2027",
+      "currentSemester": 1,
+      "section": "SS0"
+    },
+    "contact": {
+      "universityEmail": "bsit62s25s030@university.edu",
+      "personalEmail": "muhammad@gmail.com",
+      "phone": "+92300100029",
+      "address": "Pakistan"
+    },
+    "guardian": {
+      "name": "Muhammad Akram",
+      "relation": "Father",
+      "phone": "+92333100029",
+      "email": "muhammad@gmail.com",
+      "occupation": "Private Job"
+    },
+    "status": {
+      "isActive": true,
+      "admissionDate": "2025-09-10"
+    }
+  },
+  {
+    "studentId": "BSIT62S25S031",
+    "personal": {
+      "firstName": "Pakeeza",
+      "lastName": "Ghazal",
+      "fullName": "Pakeeza Ghazal",
+      "gender": "Female",
+      "dateOfBirth": "2005-01-01"
+    },
+    "academic": {
+      "rollNo": "BSIT62S25S031",
+      "program": "BS Information Technology",
+      "department": "Information Technology",
+      "session": "2025-2027",
+      "currentSemester": 1,
+      "section": "SS0"
+    },
+    "contact": {
+      "universityEmail": "bsit62s25s031@university.edu",
+      "personalEmail": "pakeeza@gmail.com",
+      "phone": "+92300100030",
+      "address": "Pakistan"
+    },
+    "guardian": {
+      "name": "Khizar Hayat",
+      "relation": "Father",
+      "phone": "+92333100030",
+      "email": "khizar@gmail.com",
+      "occupation": "Private Job"
+    },
+    "status": {
+      "isActive": true,
+      "admissionDate": "2025-09-10"
+    }
+  },
+  {
+    "studentId": "BSIT62S25S032",
+    "personal": {
+      "firstName": "Humna",
+      "lastName": "Shafiq",
+      "fullName": "Humna Shafiq",
+      "gender": "Male",
+      "dateOfBirth": "2005-01-01"
+    },
+    "academic": {
+      "rollNo": "BSIT62S25S032",
+      "program": "BS Information Technology",
+      "department": "Information Technology",
+      "session": "2025-2027",
+      "currentSemester": 1,
+      "section": "SS0"
+    },
+    "contact": {
+      "universityEmail": "bsit62s25s032@university.edu",
+      "personalEmail": "humna@gmail.com",
+      "phone": "+92300100031",
+      "address": "Pakistan"
+    },
+    "guardian": {
+      "name": "Muhammad Shafiq",
+      "relation": "Father",
+      "phone": "+92333100031",
+      "email": "muhammad@gmail.com",
+      "occupation": "Private Job"
+    },
+    "status": {
+      "isActive": true,
+      "admissionDate": "2025-09-10"
+    }
+  },
+  {
+    "studentId": "BSIT62S25S033",
+    "personal": {
+      "firstName": "Afifa",
+      "lastName": "",
+      "fullName": "Afifa",
+      "gender": "Female",
+      "dateOfBirth": "2005-01-01"
+    },
+    "academic": {
+      "rollNo": "BSIT62S25S033",
+      "program": "BS Information Technology",
+      "department": "Information Technology",
+      "session": "2025-2027",
+      "currentSemester": 1,
+      "section": "SS0"
+    },
+    "contact": {
+      "universityEmail": "bsit62s25s033@university.edu",
+      "personalEmail": "afifa@gmail.com",
+      "phone": "+92300100032",
+      "address": "Pakistan"
+    },
+    "guardian": {
+      "name": "Arshad Mahmood",
+      "relation": "Father",
+      "phone": "+92333100032",
+      "email": "arshad@gmail.com",
+      "occupation": "Private Job"
+    },
+    "status": {
+      "isActive": true,
+      "admissionDate": "2025-09-10"
+    }
+  },
+  {
+    "studentId": "BSIT62S25S034",
+    "personal": {
+      "firstName": "Momana",
+      "lastName": "Jabeen",
+      "fullName": "Momana Jabeen",
+      "gender": "Male",
+      "dateOfBirth": "2005-01-01"
+    },
+    "academic": {
+      "rollNo": "BSIT62S25S034",
+      "program": "BS Information Technology",
+      "department": "Information Technology",
+      "session": "2025-2027",
+      "currentSemester": 1,
+      "section": "SS0"
+    },
+    "contact": {
+      "universityEmail": "bsit62s25s034@university.edu",
+      "personalEmail": "momana@gmail.com",
+      "phone": "+92300100033",
+      "address": "Pakistan"
+    },
+    "guardian": {
+      "name": "Allah Ditta",
+      "relation": "Father",
+      "phone": "+92333100033",
+      "email": "allah@gmail.com",
+      "occupation": "Private Job"
+    },
+    "status": {
+      "isActive": true,
+      "admissionDate": "2025-09-10"
+    }
+  },
+  {
+    "studentId": "BSIT62S25S035",
+    "personal": {
+      "firstName": "Aliha",
+      "lastName": "Zainab",
+      "fullName": "Aliha Zainab",
+      "gender": "Female",
+      "dateOfBirth": "2005-01-01"
+    },
+    "academic": {
+      "rollNo": "BSIT62S25S035",
+      "program": "BS Information Technology",
+      "department": "Information Technology",
+      "session": "2025-2027",
+      "currentSemester": 1,
+      "section": "SS0"
+    },
+    "contact": {
+      "universityEmail": "bsit62s25s035@university.edu",
+      "personalEmail": "aliha@gmail.com",
+      "phone": "+92300100034",
+      "address": "Pakistan"
+    },
+    "guardian": {
+      "name": "Ulfat Hussain",
+      "relation": "Father",
+      "phone": "+92333100034",
+      "email": "ulfat@gmail.com",
+      "occupation": "Private Job"
+    },
+    "status": {
+      "isActive": true,
+      "admissionDate": "2025-09-10"
+    }
+  },
+  {
+    "studentId": "BSIT62S25S036",
+    "personal": {
+      "firstName": "Muhammad",
+      "lastName": "Qamar Mustafa",
+      "fullName": "Muhammad Qamar Mustafa",
+      "gender": "Male",
+      "dateOfBirth": "2005-01-01"
+    },
+    "academic": {
+      "rollNo": "BSIT62S25S036",
+      "program": "BS Information Technology",
+      "department": "Information Technology",
+      "session": "2025-2027",
+      "currentSemester": 1,
+      "section": "SS0"
+    },
+    "contact": {
+      "universityEmail": "bsit62s25s036@university.edu",
+      "personalEmail": "muhammad@gmail.com",
+      "phone": "+92300100035",
+      "address": "Pakistan"
+    },
+    "guardian": {
+      "name": "Muhammad Zulqarnain Shah",
+      "relation": "Father",
+      "phone": "+92333100035",
+      "email": "muhammad@gmail.com",
+      "occupation": "Private Job"
+    },
+    "status": {
+      "isActive": true,
+      "admissionDate": "2025-09-10"
+    }
+  },
+  {
+    "studentId": "BSIT62S25S037",
+    "personal": {
+      "firstName": "Nijaf",
+      "lastName": "",
+      "fullName": "Nijaf",
+      "gender": "Female",
+      "dateOfBirth": "2005-01-01"
+    },
+    "academic": {
+      "rollNo": "BSIT62S25S037",
+      "program": "BS Information Technology",
+      "department": "Information Technology",
+      "session": "2025-2027",
+      "currentSemester": 1,
+      "section": "SS0"
+    },
+    "contact": {
+      "universityEmail": "bsit62s25s037@university.edu",
+      "personalEmail": "nijaf@gmail.com",
+      "phone": "+92300100036",
+      "address": "Pakistan"
+    },
+    "guardian": {
+      "name": "Muhammad Yasin",
+      "relation": "Father",
+      "phone": "+92333100036",
+      "email": "muhammad@gmail.com",
+      "occupation": "Private Job"
+    },
+    "status": {
+      "isActive": true,
+      "admissionDate": "2025-09-10"
+    }
+  },
+  {
+    "studentId": "BSIT62S25S038",
+    "personal": {
+      "firstName": "Malaika",
+      "lastName": "Ashfaq",
+      "fullName": "Malaika Ashfaq",
+      "gender": "Male",
+      "dateOfBirth": "2005-01-01"
+    },
+    "academic": {
+      "rollNo": "BSIT62S25S038",
+      "program": "BS Information Technology",
+      "department": "Information Technology",
+      "session": "2025-2027",
+      "currentSemester": 1,
+      "section": "SS0"
+    },
+    "contact": {
+      "universityEmail": "bsit62s25s038@university.edu",
+      "personalEmail": "malaika@gmail.com",
+      "phone": "+92300100037",
+      "address": "Pakistan"
+    },
+    "guardian": {
+      "name": "Ashfaq Ahmad",
+      "relation": "Father",
+      "phone": "+92333100037",
+      "email": "ashfaq@gmail.com",
+      "occupation": "Private Job"
+    },
+    "status": {
+      "isActive": true,
+      "admissionDate": "2025-09-10"
+    }
+  },
+  {
+    "studentId": "BSIT62S25S039",
+    "personal": {
+      "firstName": "Haider",
+      "lastName": "Ali",
+      "fullName": "Haider Ali",
+      "gender": "Female",
+      "dateOfBirth": "2005-01-01"
+    },
+    "academic": {
+      "rollNo": "BSIT62S25S039",
+      "program": "BS Information Technology",
+      "department": "Information Technology",
+      "session": "2025-2027",
+      "currentSemester": 1,
+      "section": "SS0"
+    },
+    "contact": {
+      "universityEmail": "bsit62s25s039@university.edu",
+      "personalEmail": "haider@gmail.com",
+      "phone": "+92300100038",
+      "address": "Pakistan"
+    },
+    "guardian": {
+      "name": "Muhammad Sajid",
+      "relation": "Father",
+      "phone": "+92333100038",
+      "email": "muhammad@gmail.com",
+      "occupation": "Private Job"
+    },
+    "status": {
+      "isActive": true,
+      "admissionDate": "2025-09-10"
+    }
+  },
+  {
+    "studentId": "BSIT62S25S040",
+    "personal": {
+      "firstName": "Hammad",
+      "lastName": "Ali",
+      "fullName": "Hammad Ali",
+      "gender": "Male",
+      "dateOfBirth": "2005-01-01"
+    },
+    "academic": {
+      "rollNo": "BSIT62S25S040",
+      "program": "BS Information Technology",
+      "department": "Information Technology",
+      "session": "2025-2027",
+      "currentSemester": 1,
+      "section": "SS0"
+    },
+    "contact": {
+      "universityEmail": "bsit62s25s040@university.edu",
+      "personalEmail": "hammad@gmail.com",
+      "phone": "+92300100039",
+      "address": "Pakistan"
+    },
+    "guardian": {
+      "name": "Niamat Ali",
+      "relation": "Father",
+      "phone": "+92333100039",
+      "email": "niamat@gmail.com",
+      "occupation": "Private Job"
+    },
+    "status": {
+      "isActive": true,
+      "admissionDate": "2025-09-10"
+    }
+  },
+  {
+    "studentId": "BSIT62S25S041",
+    "personal": {
+      "firstName": "Ali",
+      "lastName": "Nawaz",
+      "fullName": "Ali Nawaz",
+      "gender": "Female",
+      "dateOfBirth": "2005-01-01"
+    },
+    "academic": {
+      "rollNo": "BSIT62S25S041",
+      "program": "BS Information Technology",
+      "department": "Information Technology",
+      "session": "2025-2027",
+      "currentSemester": 1,
+      "section": "SS0"
+    },
+    "contact": {
+      "universityEmail": "bsit62s25s041@university.edu",
+      "personalEmail": "ali@gmail.com",
+      "phone": "+92300100040",
+      "address": "Pakistan"
+    },
+    "guardian": {
+      "name": "Muhammad Nawaz",
+      "relation": "Father",
+      "phone": "+92333100040",
+      "email": "muhammad@gmail.com",
+      "occupation": "Private Job"
+    },
+    "status": {
+      "isActive": true,
+      "admissionDate": "2025-09-10"
+    }
+  },
+  {
+    "studentId": "BSIT62S25S042",
+    "personal": {
+      "firstName": "Saqib",
+      "lastName": "Ijaz",
+      "fullName": "Saqib Ijaz",
+      "gender": "Male",
+      "dateOfBirth": "2005-01-01"
+    },
+    "academic": {
+      "rollNo": "BSIT62S25S042",
+      "program": "BS Information Technology",
+      "department": "Information Technology",
+      "session": "2025-2027",
+      "currentSemester": 1,
+      "section": "SS0"
+    },
+    "contact": {
+      "universityEmail": "bsit62s25s042@university.edu",
+      "personalEmail": "saqib@gmail.com",
+      "phone": "+92300100041",
+      "address": "Pakistan"
+    },
+    "guardian": {
+      "name": "Ijaz Ali",
+      "relation": "Father",
+      "phone": "+92333100041",
+      "email": "ijaz@gmail.com",
+      "occupation": "Private Job"
+    },
+    "status": {
+      "isActive": true,
+      "admissionDate": "2025-09-10"
+    }
+  },
+  {
+    "studentId": "BSIT62S25S043",
+    "personal": {
+      "firstName": "Muhammad",
+      "lastName": "Talha",
+      "fullName": "Muhammad Talha",
+      "gender": "Female",
+      "dateOfBirth": "2005-01-01"
+    },
+    "academic": {
+      "rollNo": "BSIT62S25S043",
+      "program": "BS Information Technology",
+      "department": "Information Technology",
+      "session": "2025-2027",
+      "currentSemester": 1,
+      "section": "SS0"
+    },
+    "contact": {
+      "universityEmail": "bsit62s25s043@university.edu",
+      "personalEmail": "muhammad@gmail.com",
+      "phone": "+92300100042",
+      "address": "Pakistan"
+    },
+    "guardian": {
+      "name": "Muhammad Afzal",
+      "relation": "Father",
+      "phone": "+92333100042",
+      "email": "muhammad@gmail.com",
+      "occupation": "Private Job"
+    },
+    "status": {
+      "isActive": true,
+      "admissionDate": "2025-09-10"
+    }
+  },
+  {
+    "studentId": "BSIT62S25S044",
+    "personal": {
+      "firstName": "Sehir",
+      "lastName": "Eman",
+      "fullName": "Sehir Eman",
+      "gender": "Male",
+      "dateOfBirth": "2005-01-01"
+    },
+    "academic": {
+      "rollNo": "BSIT62S25S044",
+      "program": "BS Information Technology",
+      "department": "Information Technology",
+      "session": "2025-2027",
+      "currentSemester": 1,
+      "section": "SS0"
+    },
+    "contact": {
+      "universityEmail": "bsit62s25s044@university.edu",
+      "personalEmail": "sehir@gmail.com",
+      "phone": "+92300100043",
+      "address": "Pakistan"
+    },
+    "guardian": {
+      "name": "Tariq Mehmood",
+      "relation": "Father",
+      "phone": "+92333100043",
+      "email": "tariq@gmail.com",
+      "occupation": "Private Job"
+    },
+    "status": {
+      "isActive": true,
+      "admissionDate": "2025-09-10"
+    }
+  },
+  {
+    "studentId": "BSIT62S25S045",
+    "personal": {
+      "firstName": "Huma",
+      "lastName": "Riaz",
+      "fullName": "Huma Riaz",
+      "gender": "Female",
+      "dateOfBirth": "2005-01-01"
+    },
+    "academic": {
+      "rollNo": "BSIT62S25S045",
+      "program": "BS Information Technology",
+      "department": "Information Technology",
+      "session": "2025-2027",
+      "currentSemester": 1,
+      "section": "SS0"
+    },
+    "contact": {
+      "universityEmail": "bsit62s25s045@university.edu",
+      "personalEmail": "huma@gmail.com",
+      "phone": "+92300100044",
+      "address": "Pakistan"
+    },
+    "guardian": {
+      "name": "Riaz Hussain",
+      "relation": "Father",
+      "phone": "+92333100044",
+      "email": "riaz@gmail.com",
+      "occupation": "Private Job"
+    },
+    "status": {
+      "isActive": true,
+      "admissionDate": "2025-09-10"
+    }
+  },
+  {
+    "studentId": "BSIT62S25S046",
+    "personal": {
+      "firstName": "Ali",
+      "lastName": "Sultan Ahmed Kundi",
+      "fullName": "Ali Sultan Ahmed Kundi",
+      "gender": "Male",
+      "dateOfBirth": "2005-01-01"
+    },
+    "academic": {
+      "rollNo": "BSIT62S25S046",
+      "program": "BS Information Technology",
+      "department": "Information Technology",
+      "session": "2025-2027",
+      "currentSemester": 1,
+      "section": "SS0"
+    },
+    "contact": {
+      "universityEmail": "bsit62s25s046@university.edu",
+      "personalEmail": "ali@gmail.com",
+      "phone": "+92300100045",
+      "address": "Pakistan"
+    },
+    "guardian": {
+      "name": "Muhammad Atta Ullah",
+      "relation": "Father",
+      "phone": "+92333100045",
+      "email": "muhammad@gmail.com",
+      "occupation": "Private Job"
+    },
+    "status": {
+      "isActive": true,
+      "admissionDate": "2025-09-10"
+    }
+  },
+  {
+    "studentId": "BSIT62S25S047",
+    "personal": {
+      "firstName": "Khansa",
+      "lastName": "Mushtaq",
+      "fullName": "Khansa Mushtaq",
+      "gender": "Female",
+      "dateOfBirth": "2005-01-01"
+    },
+    "academic": {
+      "rollNo": "BSIT62S25S047",
+      "program": "BS Information Technology",
+      "department": "Information Technology",
+      "session": "2025-2027",
+      "currentSemester": 1,
+      "section": "SS0"
+    },
+    "contact": {
+      "universityEmail": "bsit62s25s047@university.edu",
+      "personalEmail": "khansa@gmail.com",
+      "phone": "+92300100046",
+      "address": "Pakistan"
+    },
+    "guardian": {
+      "name": "Mushtaq Ahmad",
+      "relation": "Father",
+      "phone": "+92333100046",
+      "email": "mushtaq@gmail.com",
+      "occupation": "Private Job"
+    },
+    "status": {
+      "isActive": true,
+      "admissionDate": "2025-09-10"
+    }
+  },
+  {
+    "studentId": "BSIT62S25S048",
+    "personal": {
+      "firstName": "Muntaha",
+      "lastName": "Masood",
+      "fullName": "Muntaha Masood",
+      "gender": "Male",
+      "dateOfBirth": "2005-01-01"
+    },
+    "academic": {
+      "rollNo": "BSIT62S25S048",
+      "program": "BS Information Technology",
+      "department": "Information Technology",
+      "session": "2025-2027",
+      "currentSemester": 1,
+      "section": "SS0"
+    },
+    "contact": {
+      "universityEmail": "bsit62s25s048@university.edu",
+      "personalEmail": "muntaha@gmail.com",
+      "phone": "+92300100047",
+      "address": "Pakistan"
+    },
+    "guardian": {
+      "name": "Muhammad Masood",
+      "relation": "Father",
+      "phone": "+92333100047",
+      "email": "muhammad@gmail.com",
+      "occupation": "Private Job"
+    },
+    "status": {
+      "isActive": true,
+      "admissionDate": "2025-09-10"
+    }
+  },
+  {
+    "studentId": "BSIT62S25S049",
+    "personal": {
+      "firstName": "Muhammad",
+      "lastName": "Ahmad",
+      "fullName": "Muhammad Ahmad",
+      "gender": "Female",
+      "dateOfBirth": "2005-01-01"
+    },
+    "academic": {
+      "rollNo": "BSIT62S25S049",
+      "program": "BS Information Technology",
+      "department": "Information Technology",
+      "session": "2025-2027",
+      "currentSemester": 1,
+      "section": "SS0"
+    },
+    "contact": {
+      "universityEmail": "bsit62s25s049@university.edu",
+      "personalEmail": "muhammad@gmail.com",
+      "phone": "+92300100048",
+      "address": "Pakistan"
+    },
+    "guardian": {
+      "name": "Ghulam Murtaza",
+      "relation": "Father",
+      "phone": "+92333100048",
+      "email": "ghulam@gmail.com",
+      "occupation": "Private Job"
+    },
+    "status": {
+      "isActive": true,
+      "admissionDate": "2025-09-10"
+    }
+  },
+  {
+    "studentId": "BSIT62S25S050",
+    "personal": {
+      "firstName": "Muhammad",
+      "lastName": "Shahzad",
+      "fullName": "Muhammad Shahzad",
+      "gender": "Male",
+      "dateOfBirth": "2005-01-01"
+    },
+    "academic": {
+      "rollNo": "BSIT62S25S050",
+      "program": "BS Information Technology",
+      "department": "Information Technology",
+      "session": "2025-2027",
+      "currentSemester": 1,
+      "section": "SS0"
+    },
+    "contact": {
+      "universityEmail": "bsit62s25s050@university.edu",
+      "personalEmail": "muhammad@gmail.com",
+      "phone": "+92300100049",
+      "address": "Pakistan"
+    },
+    "guardian": {
+      "name": "Ijaz Ahmad",
+      "relation": "Father",
+      "phone": "+92333100049",
+      "email": "ijaz@gmail.com",
+      "occupation": "Private Job"
+    },
+    "status": {
+      "isActive": true,
+      "admissionDate": "2025-09-10"
+    }
+  },
+  {
+    "studentId": "BSIT62S25S051",
+    "personal": {
+      "firstName": "Zain",
+      "lastName": "Arshad",
+      "fullName": "Zain Arshad",
+      "gender": "Female",
+      "dateOfBirth": "2005-01-01"
+    },
+    "academic": {
+      "rollNo": "BSIT62S25S051",
+      "program": "BS Information Technology",
+      "department": "Information Technology",
+      "session": "2025-2027",
+      "currentSemester": 1,
+      "section": "SS0"
+    },
+    "contact": {
+      "universityEmail": "bsit62s25s051@university.edu",
+      "personalEmail": "zain@gmail.com",
+      "phone": "+92300100050",
+      "address": "Pakistan"
+    },
+    "guardian": {
+      "name": "Arshad Mehmood",
+      "relation": "Father",
+      "phone": "+92333100050",
+      "email": "arshad@gmail.com",
+      "occupation": "Private Job"
+    },
+    "status": {
+      "isActive": true,
+      "admissionDate": "2025-09-10"
+    }
+  },
+  {
+    "studentId": "BSIT62S25S052",
+    "personal": {
+      "firstName": "Eshah",
+      "lastName": "Mahnoor",
+      "fullName": "Eshah Mahnoor",
+      "gender": "Male",
+      "dateOfBirth": "2005-01-01"
+    },
+    "academic": {
+      "rollNo": "BSIT62S25S052",
+      "program": "BS Information Technology",
+      "department": "Information Technology",
+      "session": "2025-2027",
+      "currentSemester": 1,
+      "section": "SS0"
+    },
+    "contact": {
+      "universityEmail": "bsit62s25s052@university.edu",
+      "personalEmail": "eshah@gmail.com",
+      "phone": "+92300100051",
+      "address": "Pakistan"
+    },
+    "guardian": {
+      "name": "Nasir Ali",
+      "relation": "Father",
+      "phone": "+92333100051",
+      "email": "nasir@gmail.com",
+      "occupation": "Private Job"
+    },
+    "status": {
+      "isActive": true,
+      "admissionDate": "2025-09-10"
+    }
+  },
+  {
+    "studentId": "BSIT62S25S053",
+    "personal": {
+      "firstName": "Zubair",
+      "lastName": "Arshad",
+      "fullName": "Zubair Arshad",
+      "gender": "Female",
+      "dateOfBirth": "2005-01-01"
+    },
+    "academic": {
+      "rollNo": "BSIT62S25S053",
+      "program": "BS Information Technology",
+      "department": "Information Technology",
+      "session": "2025-2027",
+      "currentSemester": 1,
+      "section": "SS0"
+    },
+    "contact": {
+      "universityEmail": "bsit62s25s053@university.edu",
+      "personalEmail": "zubair@gmail.com",
+      "phone": "+92300100052",
+      "address": "Pakistan"
+    },
+    "guardian": {
+      "name": "Arshad Ali",
+      "relation": "Father",
+      "phone": "+92333100052",
+      "email": "arshad@gmail.com",
+      "occupation": "Private Job"
+    },
+    "status": {
+      "isActive": true,
+      "admissionDate": "2025-09-10"
+    }
+  }
+]

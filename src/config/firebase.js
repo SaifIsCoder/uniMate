@@ -1,19 +1,20 @@
-
-
 import { initializeApp } from "firebase/app";
 import { initializeAuth, getReactNativePersistence } from "firebase/auth";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
+import Constants from "expo-constants";
+
 const firebaseConfig = {
-  apiKey: "AIzaSyAK2716qyOm2B_bDCON4Qk7Ytu0kXvMmgE",
-  authDomain: "campus-companion-app-f6378.firebaseapp.com",
-  projectId: "campus-companion-app-f6378",
-  storageBucket: "campus-companion-app-f6378.firebasestorage.app",
-  messagingSenderId: "904475174828",
-  appId: "1:904475174828:web:36c50c416b82b1cef5fc09",
-  measurementId: "G-S5BTW6PC32"
+  apiKey: Constants.expoConfig?.extra?.firebaseApiKey,
+  authDomain: Constants.expoConfig?.extra?.firebaseAuthDomain,
+  projectId: Constants.expoConfig?.extra?.firebaseProjectId,
+  storageBucket: Constants.expoConfig?.extra?.firebaseStorageBucket,
+  messagingSenderId: Constants.expoConfig?.extra?.firebaseMessagingSenderId,
+  appId: Constants.expoConfig?.extra?.firebaseAppId,
+  measurementId: Constants.expoConfig?.extra?.firebaseMeasurementId,
 };
+
 const app = initializeApp(firebaseConfig);
 
 export const auth = initializeAuth(app, {

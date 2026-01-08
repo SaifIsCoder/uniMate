@@ -1,0 +1,44 @@
+{
+  "assignments": [
+    {
+      "id": "a1",
+      "title": "Project - Portfolio Website",
+      "description": "Create a responsive personal portfolio website using HTML, CSS, and JavaScript. Include sections for About, Projects, Skills, and Contact.",
+      "course": "Web Development",
+      "courseCode": "IT-201",
+      "dueDate": "2026-01-10T23:59:00Z",
+      "status": "Submitted",
+      "submittedAt": "2026-01-09T14:30:00Z",
+      "hasAttachment": true,
+      "points": 100,
+      "color": "#6366F1"
+    },
+    {
+      "id": "a2",
+      "title": "Assignment - Linked Lists",
+      "description": "Implement singly and doubly linked lists with insertion, deletion, and traversal operations. Include time complexity analysis.",
+      "course": "Data Structures",
+      "courseCode": "CS-103",
+      "dueDate": "2026-01-12T23:59:00Z",
+      "status": "Submitted",
+      "submittedAt": "2026-01-11T20:15:00Z",
+      "hasAttachment": true,
+      "points": 50,
+      "color": "#22C55E"
+    },
+    {
+      "id": "a3",
+      "title": "Database Design - ER Diagram",
+      "description": "Design an Entity-Relationship diagram for a university management system. Include at least 8 entities with proper relationships.",
+      "course": "Database Systems",
+      "courseCode": "IT-305",
+      "dueDate": "2026-01-15T23:59:00Z",
+      "status": "Pending",
+      "submittedAt": null,
+      "hasAttachment": true,
+      "points": 75,
+      "color": "#38BDF8"
+    }
+  ]
+}
+

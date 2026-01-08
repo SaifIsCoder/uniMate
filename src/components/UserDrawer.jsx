@@ -9,22 +9,18 @@ import {
   Animated,
   Dimensions,
   TouchableWithoutFeedback,
+  Alert,
 } from "react-native";
-import { signOut } from "firebase/auth";
-import { auth } from "../config/firebase";
 import { useUser } from "../context/UserContext";
-
-import { useNavigation } from "@react-navigation/native";
-
+import { useNavigation, CommonActions } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
-
 const { width } = Dimensions.get("window");
-
+const defaultAvatar = require("../../assets/avatar.jpg");
 export default function UserDrawer({ visible, onClose }) {
-  const slideAnim = useRef(new Animated.Value(width)).current; // start offscreen
+  const slideAnim = useRef(new Animated.Value(width)).current;
   const fadeAnim = useRef(new Animated.Value(0)).current;
   const navigation = useNavigation();
-  const { user, setUser } = useUser();
+  const { user, logout } = useUser();
 
   useEffect(() => {
     if (visible) {
@@ -55,15 +51,22 @@ export default function UserDrawer({ visible, onClose }) {
       ]).start();
     }
   }, [visible]);
+
   const handleLogout = async () => {
     try {
-      await signOut(auth);
-      setUser(null); // Clear user context
-      navigation.replace("Login"); // Go back to login screen
+      await logout();
+      navigation.dispatch(
+        CommonActions.reset({
+          index: 0,
+          routes: [{ name: "Login" }],
+        })
+      );
+      onClose();
     } catch (error) {
       Alert.alert("Logout Failed", error.message);
     }
   };
+
   return (
     <Animated.View
       pointerEvents={visible ? "auto" : "none"}
@@ -81,7 +84,7 @@ export default function UserDrawer({ visible, onClose }) {
         {/* Header */}
         <View style={styles.header}>
           <Image
-            source={{ uri: "https://i.pravatar.cc/100" }}
+            source={user?.avatarUrl ? { uri: user.avatarUrl } : defaultAvatar}
             style={styles.avatar}
           />
           <Text style={styles.username}>{user?.name || "Student"}</Text>
@@ -92,7 +95,10 @@ export default function UserDrawer({ visible, onClose }) {
         <View style={styles.menu}>
           <TouchableOpacity
             style={styles.menuItem}
-            onPress={() => navigation.navigate("Profile")}
+            onPress={() => {
+              navigation.navigate("Profile");
+              onClose();
+            }}
           >
             <Ionicons name="person-circle-outline" size={22} color="#111827" />
             <Text style={styles.menuText}>Profile</Text>

@@ -1,189 +1,468 @@
+
+
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
-  TouchableOpacity,
   StyleSheet,
   ScrollView,
+  TouchableOpacity,
   Image,
+  ActivityIndicator,
+  RefreshControl,
+  Alert,
 } from "react-native";
-import React, { useState } from "react";
-import UserDrawer from "../components/UserDrawer";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { LinearGradient } from "expo-linear-gradient";
 import { Ionicons } from "@expo/vector-icons";
-import { classes } from "../data";
 import { useUser } from "../context/UserContext";
+import { classes, events } from "../data";
+import UserDrawer from "../components/UserDrawer";
+import { db } from "../config/firebase";
+import { collection, query, where, onSnapshot, getDocs } from "firebase/firestore";
+import { seedAllData } from "../scripts/seedFirebase";
+import { scheduleNotification, scheduleDelayedNotification, requestPermissions } from "../services/notificationService";
+
+const defaultAvatar = require("../../assets/avatar.jpg");
+
 export default function HomeScreen({ navigation }) {
   const { user } = useUser();
   const [drawerVisible, setDrawerVisible] = useState(false);
-  const latestNotification =
-    "Tomorrow’s AI class will be held online via Zoom 📢";
-  const nextEvent = {
-    title: "Hackathon 2025",
-    date: "Oct 10th, 2025",
-    location: "Main Auditorium",
-  };
-  const attendance = 85;
+  const [loading, setLoading] = useState(true);
+  const [refreshing, setRefreshing] = useState(false);
+  const [todayClasses, setTodayClasses] = useState([]);
+  const [stats, setStats] = useState({
+    attendance: user?.attendance || "90",
+    pendingAssignments: 0,
+    upcomingQuizzes: 0,
+  });
+  const [latestNotification, setLatestNotification] = useState(null);
+  const [nextEvent, setNextEvent] = useState(null);
+  const [seeding, setSeeding] = useState(false);
 
-  const getStatusStyle = (status) => {
-    if (status === "completed") return { color: "#22C55E" };
-    if (status === "upcoming") return { color: "#3B82F6" };
-    if (status === "missed") return { color: "#EF4444" };
-    return { color: "#6B7280" };
+  const handleBellPress = async () => {
+    // Navigate to notifications screen
+    navigation?.navigate("Notifications");
+    
+    // Also trigger a notification
+    await scheduleNotification(
+      "New Updates Available",
+      "Check your assignments and schedule for today.",
+      { type: "bell_press", screen: "Notifications" }
+    );
   };
 
+  const handleSeedData = async () => {
+    Alert.alert(
+      "Seed Data to Firebase",
+      "This will seed assignments, events, and classes data to Firebase. Continue?",
+      [
+        {
+          text: "Cancel",
+          style: "cancel",
+        },
+        {
+          text: "Seed",
+          onPress: async () => {
+            try {
+              setSeeding(true);
+              const results = await seedAllData();
+              
+              const totalSuccess = 
+                results.assignments.success.length +
+                results.events.success.length +
+                results.classes.success.length;
+              
+              Alert.alert(
+                "Seeding Complete",
+                `Successfully seeded:\n- Assignments: ${results.assignments.success.length}\n- Events: ${results.events.success.length}\n- Classes: ${results.classes.success.length}\n\nTotal: ${totalSuccess} items`,
+                [{ text: "OK" }]
+              );
+            } catch (error) {
+              console.error("Error seeding data:", error);
+              Alert.alert("Error", "Failed to seed data: " + error.message);
+            } finally {
+              setSeeding(false);
+            }
+          },
+        },
+      ]
+    );
+  };
+
+  const loadTodayClassesFromLocal = (todayDateString) => {
+    // Import classes data from JSON
+    try {
+      const classesData = require("../data/classes.json");
+      
+      // Find today's classes from the nested structure
+      const todayClassesList = [];
+      
+      for (const month of classesData.months) {
+        for (const scheduleItem of month.schedule) {
+          if (scheduleItem.date === todayDateString) {
+            // Add all classes for today's date
+            todayClassesList.push(...scheduleItem.classes);
+          }
+        }
+      }
+      
+      setTodayClasses(todayClassesList);
+      console.log("Today's classes from local data:", todayClassesList.length);
+    } catch (error) {
+      console.log("Error loading local classes:", error);
+      setTodayClasses([]);
+    }
+  };
+
+  useEffect(() => {
+    loadEvents();
+    loadRealTimeData();
+    setLoading(false);
+
+    // Request notification permissions on mount
+    requestPermissions();
+
+    // Schedule a one-time notification after 5 seconds (only once per session)
+    const timer = setTimeout(() => {
+      scheduleNotification(
+        "Welcome to uniMate!",
+        "You have new updates. Check your assignments and schedule.",
+        { type: "welcome" }
+      );
+    }, 5000);
+
+    // Cleanup listeners on unmount
+    return () => {
+      clearTimeout(timer);
+      // Listeners will be cleaned up automatically when component unmounts
+    };
+  }, [user]);
+
+  const loadRealTimeData = () => {
+    if (!user) return;
+
+    // Get today's date in YYYY-MM-DD format to match Firebase date field
+    const today = new Date();
+    const todayDateString = today.toISOString().split('T')[0]; // Format: YYYY-MM-DD
+    
+    // Try to get classes from Firebase, fallback to local data
+    try {
+      const classesQuery = query(
+        collection(db, "classes"),
+        where("date", "==", todayDateString)
+      );
+
+      const unsubscribeClasses = onSnapshot(
+        classesQuery,
+        (snapshot) => {
+          if (!snapshot.empty) {
+            const classesData = snapshot.docs.map((doc) => ({
+              id: doc.id,
+              ...doc.data(),
+            }));
+            setTodayClasses(classesData);
+            console.log("Today's classes from Firebase:", classesData.length);
+          } else {
+            // Fallback to local classes - filter by actual date
+            loadTodayClassesFromLocal(todayDateString);
+          }
+        },
+        (error) => {
+          console.log("Error loading classes from Firebase, using local data:", error);
+          // Fallback to local classes - filter by actual date
+          loadTodayClassesFromLocal(todayDateString);
+        }
+      );
+    } catch (error) {
+      console.log("Using local classes data:", error);
+      loadTodayClassesFromLocal(todayDateString);
+    }
+
+    // Real-time listener for pending assignments
+    try {
+      const assignmentsQuery = query(
+        collection(db, "assignments"),
+        where("status", "in", ["Pending", "Overdue"])
+      );
+
+      const unsubscribeAssignments = onSnapshot(
+        assignmentsQuery,
+        (snapshot) => {
+          const pendingCount = snapshot.size;
+          setStats((prev) => ({
+            ...prev,
+            pendingAssignments: pendingCount,
+          }));
+        },
+        (error) => {
+          console.log("Error loading assignments from Firebase:", error);
+          // Try to get from local data as fallback
+          try {
+            const assignmentsData = require("../data/assignments.json");
+            const pendingCount = assignmentsData.assignments?.filter(
+              (a) => a.status === "Pending" || a.status === "Overdue"
+            ).length || 0;
+            setStats((prev) => ({
+              ...prev,
+              pendingAssignments: pendingCount,
+            }));
+          } catch (e) {
+            console.log("Could not load local assignments:", e);
+          }
+        }
+      );
+    } catch (error) {
+      console.log("Error setting up assignments listener:", error);
+      // Fallback to local data
+      try {
+        const assignmentsData = require("../data/assignments.json");
+        const pendingCount = assignmentsData.assignments?.filter(
+          (a) => a.status === "Pending" || a.status === "Overdue"
+        ).length || 0;
+        setStats((prev) => ({
+          ...prev,
+          pendingAssignments: pendingCount,
+        }));
+      } catch (e) {
+        console.log("Could not load local assignments:", e);
+      }
+    }
+  };
+
+  const loadEvents = () => {
+    if (!user) return;
+
+    // Real-time listener for events
+    try {
+      const eventsQuery = query(collection(db, "events"));
+
+      const unsubscribeEvents = onSnapshot(
+        eventsQuery,
+        (snapshot) => {
+          if (!snapshot.empty) {
+            const eventsData = snapshot.docs.map((doc) => ({
+              id: doc.id,
+              ...doc.data(),
+            }));
+            // Sort by date and get the next upcoming event
+            const sortedEvents = eventsData.sort((a, b) => {
+              const dateA = new Date(a.date);
+              const dateB = new Date(b.date);
+              return dateA - dateB;
+            });
+            setNextEvent(sortedEvents[0] || null);
+          } else {
+            // Fallback to local events
+            if (events && events.length > 0) {
+              const sortedEvents = events.sort((a, b) => {
+                const dateA = new Date(a.date);
+                const dateB = new Date(b.date);
+                return dateA - dateB;
+              });
+              setNextEvent(sortedEvents[0] || null);
+            }
+          }
+        },
+        (error) => {
+          console.log("Error loading events from Firebase, using local data:", error);
+          // Fallback to local events
+          if (events && events.length > 0) {
+            const sortedEvents = events.sort((a, b) => {
+              const dateA = new Date(a.date);
+              const dateB = new Date(b.date);
+              return dateA - dateB;
+            });
+            setNextEvent(sortedEvents[0] || null);
+          }
+        }
+      );
+    } catch (error) {
+      console.log("Using local events data:", error);
+      // Fallback to local events
+      if (events && events.length > 0) {
+        const sortedEvents = events.sort((a, b) => {
+          const dateA = new Date(a.date);
+          const dateB = new Date(b.date);
+          return dateA - dateB;
+        });
+        setNextEvent(sortedEvents[0] || null);
+      }
+    }
+  };
+
+  // const loadHomeData = async () => {
+  //   try {
+  //     setLoading(true);
+  //     const [classesData, statsData, notificationsData, eventsData] = await Promise.all([
+  //       apiCall(API_ENDPOINTS.CLASSES.TODAY).catch(() => []),
+  //       apiCall(API_ENDPOINTS.USERS.STATS).catch(() => ({ assignments: { pending: 0 } })),
+  //       apiCall(API_ENDPOINTS.NOTIFICATIONS.ALL).catch(() => []),
+  //       apiCall(API_ENDPOINTS.EVENTS.ALL).catch(() => []),
+  //     ]);
+
+  //     setTodayClasses(classesData);
+  //     setStats({
+  //       attendance: user?.attendance || "0",
+  //       pendingAssignments: statsData.assignments?.pending || 0,
+  //       upcomingQuizzes: 0,
+  //     });
+  //     setLatestNotification(notificationsData[0] || null);
+  //     setNextEvent(eventsData[0] || null);
+  //   } catch (error) {
+  //     console.error("Error loading home data:", error);
+  //   } finally {
+  //     setLoading(false);
+  //     setRefreshing(false);
+  //   }
+  // };
+
+  // const onRefresh = () => {
+  //   setRefreshing(true);
+  //   loadHomeData();
+  // };
+
+  // if (loading && !refreshing) {
+  //   return (
+  //     <SafeAreaView style={styles.safe}>
+  //       <View style={styles.loadingContainer}>
+  //         <ActivityIndicator size="large" color="#6366F1" />
+  //       </View>
+  //     </SafeAreaView>
+  //   );
+  // }
   return (
-    <SafeAreaView style={styles.container}>
-      <ScrollView showsVerticalScrollIndicator={false}>
-        {/* Profile Header */}
+    <SafeAreaView style={styles.safe}>
+      <ScrollView
+        contentContainerStyle={styles.container}
+        showsVerticalScrollIndicator={false}
+      >
+        {/* ================= HEADER ================= */}
         <View style={styles.header}>
           <View>
-            <Text style={styles.welcome}>Welcome back,</Text>
-            <Text style={styles.username}>{user?.name || "Student"}</Text>
+            <Text style={styles.welcome}>Welcome back</Text>
+            <Text style={styles.name}>
+              {user?.personal?.firstName || user?.personal?.firstName || user?.name || "Student"}
+            </Text>
+            {user?.academic?.program && (
+              <Text style={styles.degree}>{user.academic.program}</Text>
+            )}
+            {/* <Text style={styles.motivation}>
+              Move forward. One class at a time.
+            </Text> */}
           </View>
 
-          <View style={styles.headerNotify}>
-            {/* <View onPress={() => navigation.navigate("Notifications")}>
-              <Ionicons name="notifications" size={28} color="grey" />
-            </View> */}
+          <View style={styles.headerIcons}>
             <TouchableOpacity
-              onPress={() => navigation.navigate("Notifications")}
+              style={styles.iconBtn}
+              onPress={handleBellPress}
               hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-              accessibilityLabel="Notifications"
-              accessibilityHint="Go to notifications screen"
             >
-              <Ionicons name="notifications" size={28} color="grey" />
+              <Ionicons name="notifications-outline" size={25} color="#0F172A" />
             </TouchableOpacity>
-
-            <TouchableOpacity onPress={() => setDrawerVisible(true)}>
+            <TouchableOpacity 
+              style={styles.iconBtn}
+              onPress={() => setDrawerVisible(true)}
+            >
               <Image
-                source={{ uri: "https://i.pravatar.cc/100" }}
+                source={user?.profile?.avatar || user?.avatar ? { uri: user?.profile?.avatar || user?.avatar } : defaultAvatar}
                 style={styles.avatar}
               />
             </TouchableOpacity>
           </View>
         </View>
 
-        {/* Dashboard Cards */}
-        <View style={styles.cardGrid}>
-          {/* Classes */}
+        {/* Seed Data Button - Remove in production */}
+        {/* {__DEV__ && (
           <TouchableOpacity
-            style={[styles.card, { backgroundColor: "#4F46E5" }]}
-            onPress={() => navigation.navigate("Schedule")}
+            style={[styles.seedButton, seeding && styles.seedButtonDisabled]}
+            onPress={handleSeedData}
+            disabled={seeding}
           >
-            <Ionicons name="calendar" size={28} color="white" />
-            <Text style={styles.cardTitle}>Today’s Classes</Text>
-            <Text style={styles.cardText}>{classes.length} Scheduled</Text>
+            {seeding ? (
+              <ActivityIndicator size="small" color="#FFFFFF" />
+            ) : (
+              <>
+                <Ionicons name="cloud-upload-outline" size={18} color="#FFFFFF" />
+                <Text style={styles.seedButtonText}>Seed Data to Firebase</Text>
+              </>
+            )}
+          </TouchableOpacity>
+        )} */}
+
+        {/* ================= TODAY HERO CARD ================= */}
+        <TouchableOpacity 
+          onPress={() => navigation?.navigate("Schedule")}
+          activeOpacity={0.8}
+        >
+          <LinearGradient
+            colors={["#6366F1", "#8B5CF6", "#A855F7"]}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 1 }}
+            style={styles.heroCard}
+          >
+            <View style={styles.heroTitleContainer}>
+              <View style={styles.heroTitleIconContainer}>
+            <Ionicons name="calendar-outline" size={20} color="#FFFFFF" />
+              <Text style={styles.heroTitle}>Today</Text>
+              </View>
+              <Ionicons name="chevron-forward" size={18} color="#FFFFFF" style={{ opacity: 0.9 }} />
+            </View>
+            <Text style={styles.heroMain}>
+              {todayClasses.length > 0 ? `${todayClasses.length} class${todayClasses.length > 1 ? 'es' : ''} scheduled` : "No classes scheduled"}
+            </Text>
+            <Text style={styles.heroSub}>
+              {todayClasses.length > 0 ? "Tap to view schedule" : "You have time to plan ahead"}
+            </Text>
+          </LinearGradient>
           </TouchableOpacity>
 
-          {/* Attendance */}
+        {/* ================= PROGRESS SNAPSHOT ================= */}
+        <View style={styles.row}>
           <TouchableOpacity
-            style={[styles.card, { backgroundColor: "#10B981" }]}
+            style={styles.statCard}
             onPress={() => alert("Attendance details")}
           >
-            <Ionicons name="bar-chart" size={28} color="white" />
+            <Ionicons name="stats-chart-outline" size={22} color="#6366F1" />
             <Text style={styles.cardTitle}>Attendance</Text>
-            <Text style={styles.cardText}>{attendance}%</Text>
+            <Text style={styles.cardValue}>{stats.attendance}%</Text>
           </TouchableOpacity>
-          {/* Notifications */}
-          {/* <TouchableOpacity
-            style={[styles.card, { backgroundColor: "#22C55E" }]}
-            onPress={() => navigation.navigate("Notifications")}
-          >
-            <Ionicons name="notifications" size={28} color="white" />
-            <Text style={styles.cardTitle}>Notifications</Text>
-            <Text style={styles.cardText}>+5 New</Text>
-          </TouchableOpacity> */}
 
-          {/* Profile */}
-          {/* <TouchableOpacity
-            style={[styles.card, { backgroundColor: "#F59E0B" }]}
-            onPress={() => navigation.navigate("Profile")}
-          >
-            <Ionicons name="person" size={28} color="white" />
-            <Text style={styles.cardTitle}>Profile</Text>
-            <Text style={styles.cardText}>View & Edit</Text>
-          </TouchableOpacity> */}
-
-          {/* Assignments */}
           <TouchableOpacity
-            style={[styles.card, { backgroundColor: "#EF4444" }]}
-            onPress={() => navigation.navigate("Assignments")}
+            style={styles.statCard}
+            onPress={() => navigation?.navigate("Assignments")}
           >
-            <Ionicons name="document-text" size={28} color="white" />
+            <Ionicons name="document-text-outline" size={22} color="#6366F1" />
             <Text style={styles.cardTitle}>Assignments</Text>
-            <Text style={styles.cardText}>2 Pending</Text>
+            <Text style={styles.cardValue}>{stats.pendingAssignments} pending</Text>
           </TouchableOpacity>
+        </View>
 
-          {/* Quizzes */}
+        {/* ================= SECONDARY INFO ================= */}
+        <View style={styles.row}>
           <TouchableOpacity
-            style={[styles.card, { backgroundColor: "#06B6D4" }]}
+            style={styles.statCard}
             onPress={() => alert("Quizzes screen coming soon")}
           >
-            <Ionicons name="help-circle" size={28} color="white" />
+            <Ionicons name="help-circle-outline" size={22} color="#6366F1" />
             <Text style={styles.cardTitle}>Quizzes</Text>
-            <Text style={styles.cardText}>1 Upcoming</Text>
+            <Text style={styles.cardValue}>{stats.upcomingQuizzes > 0 ? `${stats.upcomingQuizzes} upcoming` : "No upcoming"}</Text>
           </TouchableOpacity>
 
-          {/* Events */}
           <TouchableOpacity
-            style={[styles.card, { backgroundColor: "#A855F7" }]}
-            onPress={() => navigation.navigate("Events")}
+            style={styles.statCard}
+            onPress={() => navigation?.navigate("Events")}
           >
-            <Ionicons name="gift" size={28} color="white" />
+            <Ionicons name="gift-outline" size={22} color="#6366F1" />
             <Text style={styles.cardTitle}>Next Event</Text>
-            <Text style={styles.cardText}>{nextEvent.title}</Text>
+            <Text style={styles.cardValue} numberOfLines={1}>
+              {nextEvent?.name || "No events"}
+            </Text>
           </TouchableOpacity>
         </View>
 
-        {/* Today’s Classes Section */}
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>📚 Today’s Classes</Text>
-          {classes.map((cls) => (
-            <View key={cls.id} style={styles.classCard}>
-              <View style={{ flex: 1 }}>
-                <Text style={styles.classSubject}>{cls.subject}</Text>
-                <Text style={styles.classDetail}>
-                  {cls.time} • {cls.room}
-                </Text>
-                <Text style={styles.classDetail}>{cls.teacher}</Text>
-              </View>
-              <Text style={[styles.classStatus, getStatusStyle(cls.status)]}>
-                {cls.status.toUpperCase()}
-              </Text>
-            </View>
-          ))}
-        </View>
-
-        {/* Latest Notification */}
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>🔔 Latest Notification</Text>
-          <View style={styles.infoCard}>
-            <Text style={styles.infoText}>{latestNotification}</Text>
-            <TouchableOpacity
-              style={styles.infoButton}
-              onPress={() => navigation.navigate("Notifications")}
-            >
-              <Text style={styles.infoButtonText}>See All</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-
-        {/* Next Event */}
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>🎉 Next Event</Text>
-          <View style={styles.infoCard}>
-            <Text style={styles.infoText}>{nextEvent.title}</Text>
-            <Text style={styles.infoSub}>
-              {nextEvent.date} • {nextEvent.location}
-            </Text>
-            <TouchableOpacity
-              style={[styles.infoButton, { backgroundColor: "#A855F7" }]}
-              onPress={() => navigation.navigate("Events")}
-            >
-              <Text style={styles.infoButtonText}>View Events</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
+        {/* ================= BOTTOM SPACE ================= */}
+        <View style={{ height: 40 }} />
       </ScrollView>
 
       {/* Drawer Component */}
@@ -196,87 +475,135 @@ export default function HomeScreen({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  container: {
+  safe: {
     flex: 1,
-    backgroundColor: "#F9FAFB",
-    paddingHorizontal: 16,
-    paddingTop: 16,
+    backgroundColor: "#F8FAFC",
   },
+  container: {
+    padding: 20,
+  },
+  loadingContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  avatar: {
+    width: 43,
+    height: 43,
+    borderRadius: 50,
+  },
+
+  /* HEADER */
   header: {
     flexDirection: "row",
     justifyContent: "space-between",
+    marginBottom: 24,
+  },
+  welcome: {
+    fontSize: 12,
+    color: "#64748B",
+  },
+  name: {
+    fontSize: 22,
+    fontWeight: "600",
+    color: "#0F172A",
+  },
+  degree: {
+    fontSize: 14,
+    color: "#475569",
+    marginTop: 2,
+  },
+  motivation: {
+    fontSize: 13,
+    color: "#6366F1",
+    marginTop: 6,
+  },
+  headerIcons: {
+    flexDirection: "row",
     alignItems: "center",
+  },
+  iconBtn: {
+    marginLeft: 12,
+  },
+  seedButton: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#6366F1",
+    paddingVertical: 12,
+    paddingHorizontal: 20,
+    borderRadius: 10,
     marginBottom: 20,
+    gap: 8,
   },
-  headerNotify: {
-    display: "flex",
+  seedButtonDisabled: {
+    opacity: 0.6,
+  },
+  seedButtonText: {
+    color: "#FFFFFF",
+    fontSize: 14,
+    fontWeight: "600",
+  },
+
+  /* HERO CARD */
+  heroCard: {
+    borderRadius: 16,
+    padding: 20,
+    marginBottom: 24,
+  },
+  heroTitleContainer: {
     flexDirection: "row",
     alignItems: "center",
-    gap: 9,
-  },
-  welcome: { fontSize: 16, color: "#6B7280" },
-  username: { fontSize: 22, fontWeight: "bold", color: "#111827" },
-  avatar: { width: 50, height: 50, borderRadius: 25 },
-  cardGrid: {
-    flexDirection: "row",
-    flexWrap: "wrap",
+    // gap: 6,
     justifyContent: "space-between",
+    // marginTop: 10,
   },
-  card: {
-    width: "47%",
-    height: 140,
+  heroTitleIconContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 6,
+  },
+  heroTitle: {
+    fontSize: 18,
+    color: "#FFFFFF",
+    opacity: 0.9,
+    fontWeight: "600",
+  },
+  heroMain: {
+    fontSize: 17,
+    fontWeight: "600",
+    color: "#FFFFFF",
+    marginTop: 6,
+  },
+  heroSub: {
+    fontSize: 14,
+    color: "#FFFFFF",
+    marginTop: 4,
+    opacity: 0.85,
+  },
+
+  /* GRID */
+  row: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginBottom: 16,
+  },
+  statCard: {
+    backgroundColor: "#FFFFFF",
+    width: "48%",
     borderRadius: 16,
     padding: 16,
-    marginBottom: 16,
-    justifyContent: "space-between",
-    shadowColor: "#000",
-    shadowOpacity: 0.1,
-    shadowRadius: 6,
-    elevation: 4,
+    elevation: 2,
   },
-  cardTitle: { color: "white", fontSize: 16, fontWeight: "600", marginTop: 8 },
-  cardText: { color: "white", fontSize: 14, opacity: 0.9 },
-  section: { marginTop: 15, marginBottom: 10 },
-  sectionTitle: {
+  cardTitle: {
+    fontSize: 14,
+    color: "#475569",
+    marginTop: 10,
+  },
+  cardValue: {
     fontSize: 18,
-    fontWeight: "bold",
-    color: "#111827",
-    marginBottom: 10,
+    fontWeight: "600",
+    color: "#0F172A",
+    marginTop: 6,
   },
-  classCard: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    backgroundColor: "white",
-    padding: 14,
-    borderRadius: 12,
-    marginBottom: 10,
-    shadowColor: "#000",
-    shadowOpacity: 0.05,
-    shadowRadius: 4,
-    elevation: 2,
-    margin: 5,
-  },
-  classSubject: { fontSize: 16, fontWeight: "600", color: "#1F2937" },
-  classDetail: { fontSize: 14, color: "#6B7280", marginTop: 2 },
-  classStatus: { fontSize: 13, fontWeight: "700" },
-  infoCard: {
-    backgroundColor: "white",
-    padding: 14,
-    borderRadius: 12,
-    shadowColor: "#000",
-    shadowOpacity: 0.05,
-    shadowRadius: 4,
-    elevation: 2,
-    margin: 5,
-  },
-  infoText: { fontSize: 15, color: "#374151", marginBottom: 6 },
-  infoSub: { fontSize: 14, color: "#6B7280", marginBottom: 10 },
-  infoButton: {
-    backgroundColor: "#4F46E5",
-    padding: 10,
-    borderRadius: 8,
-    alignItems: "center",
-  },
-  infoButtonText: { color: "white", fontWeight: "600" },
 });

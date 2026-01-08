@@ -8,13 +8,8 @@ import {
   ActivityIndicator,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { auth, db } from "../config/firebase";
-import {
-  createUserWithEmailAndPassword,
-  sendEmailVerification,
-  updateProfile,
-} from "firebase/auth";
-import { doc, setDoc } from "firebase/firestore";
+import { API_ENDPOINTS, setToken } from "../config/api";
+import { useUser } from "../context/UserContext";
 
 export default function SignupScreen({ navigation }) {
   const [name, setName] = useState("");
@@ -24,52 +19,56 @@ export default function SignupScreen({ navigation }) {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
+  const { setUser } = useUser();
+
   const handleSignup = async () => {
-    if (!name || !studentId || !department || !email || !password) {
-      Alert.alert("Error", "All fields are required");
+    if (!name || !email || !password) {
+      Alert.alert("Error", "Name, email, and password are required");
+      return;
+    }
+
+    if (password.length < 6) {
+      Alert.alert("Error", "Password must be at least 6 characters");
       return;
     }
 
     setLoading(true);
 
     try {
-      // 1: Create Firebase Auth user
-      const userCred = await createUserWithEmailAndPassword(
-        auth,
-        email.trim(),
-        password
-      );
-      const user = userCred.user;
-
-      // 2: Update profile (displayName)
-      await updateProfile(user, { displayName: name });
-
-      // 3: Save profile to Firestore
-      await setDoc(doc(db, "users", user.uid), {
-        uid: user.uid,
-        name,
-        email,
-        studentId,
-        department,
-        role: "student",
-        createdAt: new Date().toISOString(),
+      const response = await fetch(API_ENDPOINTS.AUTH.SIGNUP, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: email.trim(),
+          password,
+          name,
+          studentId: studentId || undefined,
+          department: department || undefined,
+        }),
       });
 
-      // 4: Send email verification
-      await sendEmailVerification(user);
+      const data = await response.json();
 
-      Alert.alert(
-        "Verify Email",
-        "Account created! Please check your email and verify before logging in."
-      );
+      if (!response.ok) {
+        throw new Error(data.error || "Signup failed");
+      }
 
-      // 5: Redirect to Login (NOT MainTabs)
-      navigation.replace("Login");
+      // Store token
+      await setToken(data.token);
+
+      // Store user data
+      setUser(data.user, data.token);
+
+      Alert.alert("Success", data.message || "Account created successfully!");
+      navigation.replace("MainTabs");
     } catch (error) {
-      Alert.alert("Signup Failed", error.message);
+      console.error("Signup error:", error);
+      Alert.alert("Signup Failed", error.message || "Unable to connect to server. Please check your connection.");
+    } finally {
+      setLoading(false);
     }
-
-    setLoading(false);
   };
 
   return (
@@ -77,28 +76,28 @@ export default function SignupScreen({ navigation }) {
       <Text style={styles.title}>Create Student Account</Text>
 
       <TextInput
-        placeholder="Full Name"
+        placeholder="Full Name *"
         value={name}
         onChangeText={setName}
         style={styles.input}
       />
 
       <TextInput
-        placeholder="Student ID"
+        placeholder="Student ID (optional)"
         value={studentId}
         onChangeText={setStudentId}
         style={styles.input}
       />
 
       <TextInput
-        placeholder="Department"
+        placeholder="Department (optional)"
         value={department}
         onChangeText={setDepartment}
         style={styles.input}
       />
 
       <TextInput
-        placeholder="Email"
+        placeholder="Email *"
         value={email}
         onChangeText={setEmail}
         keyboardType="email-address"
@@ -107,7 +106,7 @@ export default function SignupScreen({ navigation }) {
       />
 
       <TextInput
-        placeholder="Password"
+        placeholder="Password * (min 6 characters)"
         secureTextEntry
         value={password}
         onChangeText={setPassword}
